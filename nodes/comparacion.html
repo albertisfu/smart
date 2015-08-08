@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    RED.nodes.registerType('compara-2',{
+        category: 'function',
+        color: '#E49A9A',
+        defaults: {
+           valor: {value:""},
+            op: {value:""},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "compare.png",
+        label: function() {
+           return this.valor||this.op||"compara-2";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="compara-2">
+
+    <div class="form-row">
+        <label for="node-input-op"><i class="fa fa-tasks">Operación</i></label>
+        <select id="node-input-op" style="width:125px !important">
+            <option value="0">==</option>
+            <option value="1">></option>
+            <option value="2"><</option>
+            <option value="3">>=</option>
+            <option value="4"><=</option>
+            <option value="5">!=</option>
+            <option value="6">AND</option>
+            <option value="7">OR</option>
+            <option value="8">NOT</option>
+            <option value="9">FALSE</option>
+            <option value="10">TRUE</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="compara-2">
+    <p>Comparacion</p>
+</script>
+
+
+
