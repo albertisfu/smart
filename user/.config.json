@@ -278,14 +278,14 @@
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/storage/50-file.js"
     },
-    "sensor-luz": {
-     "name": "sensor-luz",
+    "temp-hum": {
+     "name": "temp-hum",
      "types": [
-      "sensor-luz"
+      "temp-hum"
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/sensor-luz.js"
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/temp-hum.js"
     }
    }
   },

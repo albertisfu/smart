@@ -1,28 +1,28 @@
 <script type="text/javascript">
-    RED.nodes.registerType('sensor-luz',{
+    RED.nodes.registerType('temp-hum',{
         category: 'function',
         color: '#a6bbcf',
         defaults: {
-            name: {value:"sensor luz"}
+            name: {value:"Ambiente"}
         },
         inputs:1,
-        outputs:1,
-        icon: "function.png",
+        outputs:2,
+        icon: "clima.png",
         label: function() {
-            return this.name||"sensor-luz";
+            return this.name||"temp-hum";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="sensor-luz">
+<script type="text/x-red" data-template-name="temp-hum">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="sensor-luz">
-    <p>Sensor que manda datos de luminosidad de 0 a 5v</p>
+<script type="text/x-red" data-help-name="temp-hum">
+    <p>Sensor que otorga datos de temperatura y humedad relativa</p>
 </script>
 
 
