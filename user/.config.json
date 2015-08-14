@@ -286,6 +286,24 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/temp-hum.js"
+    },
+    "servomotor": {
+     "name": "servomotor",
+     "types": [
+      "servomotor"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/servomotor.js"
+    },
+    "constante": {
+     "name": "constante",
+     "types": [
+      "constante"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/constante.js"
     }
    }
   },
