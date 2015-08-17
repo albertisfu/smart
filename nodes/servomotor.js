@@ -15,7 +15,7 @@ id = (1+Math.random()*4294967295).toString(16); //cambiar por un valor unico de 
 
 var1 = msg.payload;
 
-msg.payload = "{"+"i:"+id+";"+"g:"+var1+"}"; 
+msg.payload = "{"+"g:"+var1+"}"; 
 
             //msg.payload = msg.payload;
 

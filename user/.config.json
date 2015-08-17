@@ -281,7 +281,8 @@
     "temp-hum": {
      "name": "temp-hum",
      "types": [
-      "temp-hum"
+      "temp-hum",
+      "mqtt-brokersen"
      ],
      "enabled": true,
      "module": "node-red",
@@ -304,6 +305,15 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/constante.js"
+    },
+    "rgb": {
+     "name": "rgb",
+     "types": [
+      "rgb-sensor"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rgb.js"
     }
    }
   },
