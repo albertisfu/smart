@@ -1,20 +1,20 @@
 
 <script type="text/x-red" data-template-name="temp-hum">
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <label for="node-input-name"><i class="icon-tag"></i> Nombre</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
+    <div class="form-row">
+        <label for="node-input-idcentral"><i class="fa fa-tasks"></i>ID Central</label>
+        <input type="text" id="node-input-idcentral" data-i18n="">
+    </div>
 <div class="form-row">
-        <label for="node-input-idu"><i class="fa fa-tag"></i>ID</label>
-        <input type="text" id="node-input-idu" data-i18n="ID unico sensor">
+        <label for="node-input-idmodulo"><i class="fa fa-tag"></i>ID Sensor</label>
+        <input type="text" id="node-input-idmodulo" data-i18n="ID unico sensor">
     </div>
  <div class="form-row">
         <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
         <input type="text" id="node-input-broker">
-    </div>
-    <div class="form-row">
-        <label for="node-input-topic"><i class="fa fa-tasks"></i> <span data-i18n="common.label.topic"></span></label>
-        <input type="text" id="node-input-topic" data-i18n="[placeholder]common.label.topic">
     </div>
 </script>
 
@@ -27,9 +27,9 @@
         category: 'input',
         color: '#a6bbcf',
         defaults: {
-            idu: {value:""},
             name: {value:"Ambiente"},
-            topic: {value:"",required:true},
+            idmodulo: {value:"",required:true},
+            idcentral: {value:"",required:true},
             broker: {type:"mqtt-brokersen", required:true}
         },
         inputs:0,
