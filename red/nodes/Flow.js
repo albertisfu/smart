@@ -357,6 +357,9 @@ Flow.prototype.parseConfig = function(config) {
 }
 
 Flow.prototype.start = function(configDiff) {
+
+     
+
     if (configDiff) {
         for (var j=0;j<configDiff.rewire.length;j++) {
             var rewireNode = this.activeNodes[configDiff.rewire[j]];
@@ -383,7 +386,8 @@ Flow.prototype.start = function(configDiff) {
             }
         }
     }
-    
+   
+
     for (id in this.nodes) {
         if (this.nodes.hasOwnProperty(id)) {
             node = this.nodes[id];

@@ -57,6 +57,21 @@ var1=node.client.publish(msgconf, function(return1){ });
 }
 
 
+ /*this.on("stop", function() {
+    console.log("start")
+            clearInterval(refreshIntervalId);  
+        });
+
+
+ this.on("start", function() {
+    console.log("start")
+            clearInterval(refreshIntervalId);  
+        });*/
+
+  this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
+    console.log("start")
+            clearInterval(refreshIntervalId);  
+        });
 /// Funcion al desplegar el flow
 
     if (this.brokerConfig) { 
@@ -100,8 +115,6 @@ var1=node.client.publish(msgconf, function(return1){ });
 , 500);
 
               
-
-
 
 
 
