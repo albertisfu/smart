@@ -1,6 +1,6 @@
 module.exports = function(RED) {
 
-	 "use strict";
+     "use strict";
 
     var connectionPool = require("./core/io/lib/mqttConnectionPool");
     var isUtf8 = require('is-utf8');
@@ -14,11 +14,12 @@ module.exports = function(RED) {
         this.qos = n.qos || null;
         this.retain = n.retain;
         this.idmodulo = n.idmodulo;
+        this.topic = n.idmodulo;
         this.brokerConfig = RED.nodes.getNode(this.broker);
         var var1;
         var var2;
         var topic2;
-
+var  sendto=false;
         //////// Funcion Parse
 
     function parse(cadena, index, respuesta) {  //Funcion para separa mensaje tipo a:9999;b:8888
@@ -43,15 +44,18 @@ module.exports = function(RED) {
         } 
     } 
 
-  function conect(payload, respuesta) {  //Funcion para identificar un topic y poder clasificar mensajes, solo se ejecuta una vez
-        if (!executed) {
-            executed = true;
-            if(payload=="ok"){ var res = true;
-         }
-        else{var res=false;}
-         respuesta(res);
-         } 
-    }
+
+
+function loop(var1) {
+                    if(sendto==false){
+
+console.log("test");
+
+var1=node.client.publish(msgconf, function(return1){ });
+
+      }
+}
+
 
 /// Funcion al desplegar el flow
 
@@ -59,24 +63,48 @@ module.exports = function(RED) {
             this.status({fill:"red",shape:"ring",text:"common.status.disconnected"});
             this.client = connectionPool.get(this.brokerConfig.broker,this.brokerConfig.port,this.brokerConfig.clientid,this.brokerConfig.username,this.brokerConfig.password);
             var node = this;
-            var msg = {topic:"",payload:"",qos:null,retain:false};
+             var msgconf = {topic:"",payload:"",qos:null,retain:false};
 
     if (node.idcentral) { //Identificamos si existe el id unico para usar como topic hacia el modulo
-                        msg.topic = node.idcentral;
+                       msgconf.topic = node.idcentral;
                          //console.log(msg.topic);
                    }
 
-            msg.payload = "{"+"t:"+"test"+"}"; //mensaje a enviar al modulo
+           msgconf.payload = "{"+"idm:"+node.idmodulo+";m:"+"start1"+"}";//mensaje a enviar al modulo
 
-            if ( msg.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
-                    if (msg.hasOwnProperty("topic") && (typeof msg.topic === "string") && (msg.topic !== "")) { // topic must exist
-                        this.client.publish(msg);  // OJOOO send the message, se mandara la clave para crear el topic tokenizado.
+            if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
+                    if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
+                        //this.client.publish(msg);  // OJOOO send the message, se mandara la clave para crear el topic tokenizado.
                     }
                     else { 
                         node.warn(RED._("mqtt.errors.invalid-topic")); 
                         console.log("error");
                     }
                 }
+
+
+
+
+
+///podemos tener dos opciones de conexion inicial, una es enviando este mensaje cada medio segundo hasta recibir una respuesta se desactiva, si recibimos
+//respuesta quiere decir que si llego el mensaje, la otra opcion es tener el topic guardado en el modulo y mandarlo al central que sera el que se suscriba
+
+
+     
+
+        var  sendto=false;
+
+         var refreshIntervalId = setInterval(function() {
+            loop(function(var1){ });
+}
+, 500);
+
+              
+
+
+
+
+
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
 ///Funcion que responde al recibir un mensaje con el topic suscrito
@@ -91,9 +119,15 @@ module.exports = function(RED) {
 //////Revisamos que el primer mensaje que llegue sea un ok o algun mensaje de respuesta para indicar que se conecto correctamente.
 //tal vez sea conveniente agregar un token o algo similar para asegurarnos que el mensaje viene de un nodo confiable y si no viene 
 //de un nodo confiable simplemente no hacer node.send()
-                if(msg.payload=="ok"){
-                    node.status({fill:"green",shape:"dot",text:"common.status.connected"});
-                }
+                 if(msg.payload=="oktopic"){
+                    clearInterval(refreshIntervalId);  
+                    sendto=true;
+            }
+
+              if(msg.payload=="okmodulo"){
+                    node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
+            
+            }
 
 
             parse(msg.payload, 0, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
@@ -158,7 +192,4 @@ module.exports = function(RED) {
         }
     });
 }
-
-
-
 
