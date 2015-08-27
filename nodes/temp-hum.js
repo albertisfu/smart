@@ -85,7 +85,7 @@ var1=node.client.publish(msgconf, function(return1){ });
                          //console.log(msg.topic);
                    }
 
-           msgconf.payload = "{"+"idm:"+node.idmodulo+";m:"+"start1"+"}";//mensaje a enviar al modulo
+           msgconf.payload = "{"+"a:"+node.idmodulo+";b:"+"start1"+"}";//mensaje a enviar al modulo
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
