@@ -4,7 +4,6 @@
 
 
 <script type="text/javascript">
-
     RED.nodes.registerType('rgb-sensor',{
         category: 'function',
         color: '#E49A9A',
@@ -19,7 +18,7 @@
         },
         inputs:0,
         outputs:1,
-        icon: "compare.png",
+        icon: "rgb.png",
         label: function() {
            return this.sid||this.f1||this.f2||this.f3||this.rgbr||this.rgbg||this.rgbb||"rgb-sensor";
         }
@@ -59,46 +58,32 @@
 <div id="picker"></div>
 
 
-<span id="foo"></span>
-<p>
-<span id="RR"></span>
-<p>
-<span id="GG"></span>
-<p>
-<span id="BB"></span>
+<input type="hidden" id="node-input-rgbr" value="">
+<input type="hidden" id="node-input-rgbg" value="">
+<input type="hidden" id="node-input-rgbb" value="">
 
 <script type="text/javascript">
-
 //var foo = "some value";
 // document.getElementById("foo").innerHTML = foo;
-
 document.getElementById('node-input-f1').onchange = function () {
     document.getElementById("node-input-f2").disabled = this.value == '1' || this.value == '2';
     document.getElementById("node-input-f3").disabled = this.value == '1' || this.value == '2';
 }
-
-
-
 $('#picker').colpick({
     flat:true,
     layout:'rgbhex',
     submit:0,
     onChange: function(hsb,hex,rgb,el,bySetColor) {
-        document.getElementById("foo").innerHTML = hex;
+        //document.getElementById("foo").innerHTML = hex;
  
         var rgbr = rgb.r;
         var rgbg = rgb.g;
         var rgbb = rgb.b;
-        document.getElementById("RR").innerHTML = rgbr;
-        document.getElementById("GG").innerHTML = rgbg;
-        document.getElementById("BB").innerHTML = rgbb;
-
-        //var test = document.write('<p>colour1: ' + rgbr + '<br>colour2: ' + rgbg + '</p>');
+        $("#node-input-rgbr").val(rgbr);
+        $("#node-input-rgbg").val(rgbg);
+        $("#node-input-rgbb").val(rgbb);
     }
 });
-
-
-
 </script>
 
     </div>
@@ -109,4 +94,3 @@ $('#picker').colpick({
 <script type="text/x-red" data-help-name="rgb-sensor">
     <p>Comparacion</p>
 </script>
-

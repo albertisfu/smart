@@ -1,6 +1,6 @@
 module.exports = function(RED) {
 
-	 "use strict";
+     "use strict";
     
 
 
@@ -66,8 +66,8 @@ var executed = false;
 
 
 
-    msg.payload = "{"+"i:"+sid+";"+"g:"+var1+"}"; ; //Asignamos al payload el valor de resultante de la comparacion
-
+    msg.payload = "{"+"i:"+sid+";"+"x:"+f1+"y:"+f2+";"+"z:"+f3+"r:"+rgbr+";"+"g:"+rgbg+"b:"+rgbb+";"+"}"; ; //Asignamos al payload el valor de resultante de la comparacion
+                //i = id unica, f1= operacion a realizar blink(3), static(1), fade(2) ,  f2 = tiempo encendido en ms, f3 = tiempo apagado en ms, r= color r, g = volor g, b = color b
 
 
             node.send(msg); //enviamos el mensaje
