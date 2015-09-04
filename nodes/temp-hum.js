@@ -20,6 +20,13 @@ module.exports = function(RED) {
         var var2;
         var topic2;
 var  sendto=false;
+
+/****
+Para este caso de sensores
+los mensajes de plataforma al modulo se enviran via "topic idcentral"
+los mensajes del modulo a la plataforma se recibiran via "topic idmodulo"
+
+*****/
         //////// Funcion Parse
 
     function parse(cadena, index, respuesta) {  //Funcion para separa mensaje tipo a:9999;b:8888
@@ -44,34 +51,17 @@ var  sendto=false;
         } 
     } 
 
-
-
-function loop(var1) {
-                    if(sendto==false){
-
-console.log("test");
-
-var1=node.client.publish(msgconf, function(return1){ });
-
+function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
+    if(sendto==false){
+    var1=node.client.publish(msgconf, function(return1){ });
       }
 }
-
-
- /*this.on("stop", function() {
-    console.log("start")
-            clearInterval(refreshIntervalId);  
-        });
-
-
- this.on("start", function() {
-    console.log("start")
-            clearInterval(refreshIntervalId);  
-        });*/
 
   this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
     console.log("start")
             clearInterval(refreshIntervalId);  
         });
+
 /// Funcion al desplegar el flow
 
     if (this.brokerConfig) { 
@@ -85,11 +75,10 @@ var1=node.client.publish(msgconf, function(return1){ });
                          //console.log(msg.topic);
                    }
 
-           msgconf.payload = "{"+"a:"+node.idmodulo+";b:"+"start1"+"}";//mensaje a enviar al modulo
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"start1"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
-                        //this.client.publish(msg);  // OJOOO send the message, se mandara la clave para crear el topic tokenizado.
                     }
                     else { 
                         node.warn(RED._("mqtt.errors.invalid-topic")); 
@@ -97,26 +86,13 @@ var1=node.client.publish(msgconf, function(return1){ });
                     }
                 }
 
-
-
-
-
 ///podemos tener dos opciones de conexion inicial, una es enviando este mensaje cada medio segundo hasta recibir una respuesta se desactiva, si recibimos
 //respuesta quiere decir que si llego el mensaje, la otra opcion es tener el topic guardado en el modulo y mandarlo al central que sera el que se suscriba
 
+       // var  sendto=false;
 
-     
-
-        var  sendto=false;
-
-         var refreshIntervalId = setInterval(function() {
-            loop(function(var1){ });
-}
-, 500);
-
-              
-
-
+    var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
+    loop(function(var1){ }); } , 500);
 
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
@@ -132,16 +108,17 @@ var1=node.client.publish(msgconf, function(return1){ });
 //////Revisamos que el primer mensaje que llegue sea un ok o algun mensaje de respuesta para indicar que se conecto correctamente.
 //tal vez sea conveniente agregar un token o algo similar para asegurarnos que el mensaje viene de un nodo confiable y si no viene 
 //de un nodo confiable simplemente no hacer node.send()
-                 if(msg.payload=="oktopic"){
-                    clearInterval(refreshIntervalId);  
-                    sendto=true;
+
+              if(msg.payload=="okmodulo"){  //al recibir este mensaje especial denemos el loop de envio de conexion al modulo central
+                clearInterval(refreshIntervalId);  
+                sendto=true;
+                console.log(msg.payload);
             }
 
-              if(msg.payload=="okmodulo"){
+            if(msg.payload=="oktopic"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
-            
+                    console.log(msg.payload);
             }
-
 
             parse(msg.payload, 0, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
@@ -149,14 +126,12 @@ var1=node.client.publish(msgconf, function(return1){ });
             var2 = resultado; });
             topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
             var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
+
+            if(var1 && var1){  //solo enviamos el mensaje si contiene un valor util
             msg.payload = var1; //asignamos el primer valor var1 al payload del primer mensaje
             msg2.payload = var2; //asignamos el segundo valor var2 al payload del segundo mensaje
-                    
             node.send([ msg , msg2 ]); //enviamos los 2 mensajes
-
-
-
-            }, this.id);
+            }   }, this.id);
 
             ///funciones al perder conexion
                 this.client.on("connectionlost",function() {
@@ -173,6 +148,7 @@ var1=node.client.publish(msgconf, function(return1){ });
             else {
                 this.error(RED._("mqtt.errors.not-defined"));
             }
+
     } else {
             this.error(RED._("mqtt.errors.missing-config"));
         }
