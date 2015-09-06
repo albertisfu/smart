@@ -309,7 +309,7 @@
     "rgb": {
      "name": "rgb",
      "types": [
-      "rgb-sensor"
+      "rgb-leds"
      ],
      "enabled": true,
      "module": "node-red",

@@ -293,9 +293,9 @@ var RED = (function() {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
- 
+
 RED.i18n = (function() {
-    
+
     return {
         init: function(done) {
             i18n.init({
@@ -341,9 +341,9 @@ RED.i18n = (function() {
 
 
 RED.settings = (function () {
-    
+
     var loadedSettings = {};
-        
+
     var hasLocalStorage = function () {
         try {
             return 'localStorage' in window && window['localStorage'] !== null;
@@ -399,7 +399,7 @@ RED.settings = (function () {
             RED.settings.set("auth-tokens",{access_token: accessToken});
             window.location.search = "";
         }
-        
+
         $.ajaxSetup({
             beforeSend: function(jqXHR,settings) {
                 // Only attach auth header for requests to relative paths
@@ -414,7 +414,7 @@ RED.settings = (function () {
 
         load(done);
     }
-    
+
     var load = function(done) {
         $.ajax({
             headers: {
@@ -466,7 +466,7 @@ RED.settings = (function () {
         set: set,
         get: get,
         remove: remove,
-        
+
         theme: theme
     }
 })
@@ -1795,7 +1795,7 @@ RED.nodes = (function() {
  **/
 RED.history = (function() {
     var undo_history = [];
-    
+
     return {
         //TODO: this function is a placeholder until there is a 'save' event that can be listened to
         markAllDirty: function() {
@@ -1934,7 +1934,7 @@ RED.history = (function() {
                             n.outputs = ev.node.out.length;
                             RED.editor.updateNodeProperties(n);
                         });
-                        
+
                         RED.palette.refresh();
                     } else {
                         RED.editor.updateNodeProperties(ev.node);
@@ -1962,10 +1962,10 @@ RED.history = (function() {
                             RED.nodes.removeLink(ev.links[i]);
                         }
                     }
-                    
+
                     RED.nodes.removeSubflow(ev.subflow);
                     RED.workspaces.remove(ev.subflow);
-                    
+
                     if (ev.removedLinks) {
                         for (i=0;i<ev.removedLinks.length;i++) {
                             RED.nodes.addLink(ev.removedLinks[i]);
@@ -1979,7 +1979,7 @@ RED.history = (function() {
                     }
                 });
 
-                
+
                 RED.nodes.dirty(ev.dirty);
                 RED.view.redraw(true);
                 RED.palette.refresh();
@@ -2588,10 +2588,10 @@ RED.keyboard = (function() {
     function removeHandler(key) {
         delete handlers[key];
     }
-    
-    
+
+
     var dialog = null;
-    
+
     function showKeyboardHelp() {
         if (!RED.settings.theme("menu.menu-item-keyboard-shortcuts",true)) {
             return;
@@ -2636,16 +2636,16 @@ RED.keyboard = (function() {
                 }
             });
         }
-        
+
         dialog.dialog("open");
     }
-    
+
     return {
         add: addHandler,
         remove: removeHandler,
         disable: function(){ active = false;},
         enable: function(){ active = true; },
-        
+
         showHelp: showKeyboardHelp
     }
 
@@ -7861,20 +7861,20 @@ RED.subflow = (function() {
 
 RED.touch = RED.touch||{};
 RED.touch.radialMenu = (function() {
-    
-    
+
+
     var touchMenu = null;
     var isActive = false;
     var isOutside = false;
     var activeOption = null;
 
-    
+
     function createRadial(obj,pos,options) {
         isActive = true;
         try {
             var w = $("body").width();
             var h = $("body").height();
-            
+
             touchMenu = d3.select("body").append("div")
                 .style({
                         position:"absolute",
@@ -7888,10 +7888,10 @@ RED.touch.radialMenu = (function() {
                     hide();
                     d3.event.preventDefault();
                 });
-                    
-            
 
-    
+
+
+
             var menu = touchMenu.append("div")
                 .style({
                         position: "absolute",
@@ -7903,7 +7903,7 @@ RED.touch.radialMenu = (function() {
                         background: "rgba(255,255,255,0.6)",
                         border: "1px solid #666"
                 });
-                
+
             var menuOpts = [];
             var createMenuOpt = function(x,y,opt) {
                 opt.el = menu.append("div")
@@ -7919,16 +7919,16 @@ RED.touch.radialMenu = (function() {
                         "text-align": "center",
                         "line-height":"50px"
                     });
-                    
+
                 opt.el.html(opt.name);
-                
+
                 if (opt.disabled) {
                     opt.el.style({"border-color":"#ccc",color:"#ccc"});
                 }
                 opt.x = x;
                 opt.y = y;
                 menuOpts.push(opt);
-                
+
                 opt.el.on('touchstart',function() {
                     opt.el.style("background","#999");
                     d3.event.preventDefault();
@@ -7941,7 +7941,7 @@ RED.touch.radialMenu = (function() {
                     d3.event.stopPropagation();
                 });
             }
-            
+
             var n = options.length;
             var dang = Math.max(Math.PI/(n-1),Math.PI/4);
             var ang = Math.PI;
@@ -7953,7 +7953,7 @@ RED.touch.radialMenu = (function() {
                 }
                 ang += dang;
             }
-            
+
 
             var hide = function() {
                 isActive = false;
@@ -7961,11 +7961,11 @@ RED.touch.radialMenu = (function() {
                 touchMenu.remove();
                 touchMenu = null;
             }
-                    
+
             obj.on('touchend.radial',function() {
                     obj.on('touchend.radial',null);
                     obj.on('touchmenu.radial',null);
-                    
+
                     if (activeOption) {
                         try {
                             activeOption.onselect();
@@ -7979,7 +7979,7 @@ RED.touch.radialMenu = (function() {
             });
 
 
-            
+
             obj.on('touchmove.radial',function() {
             try {
                 var touch0 = d3.event.touches.item(0);
@@ -8004,20 +8004,20 @@ RED.touch.radialMenu = (function() {
                     var d = Math.abs((p[0]*p[0])+(p[1]*p[1]));
                     isOutside = (d > 80*80);
                 }
-                
+
             } catch(err) {
                 RED._debug(err);
             }
 
-                
+
             });
-            
+
         } catch(err) {
             RED._debug(err);
         }
-    }    
+    }
 
-    
+
     return {
         show: createRadial,
         active: function() {
@@ -8026,4 +8026,3 @@ RED.touch.radialMenu = (function() {
     }
 
 })();
-

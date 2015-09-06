@@ -109,11 +109,11 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 //tal vez sea conveniente agregar un token o algo similar para asegurarnos que el mensaje viene de un nodo confiable y si no viene 
 //de un nodo confiable simplemente no hacer node.send()
 
-              if(msg.payload=="okmodulo"){  //al recibir este mensaje especial denemos el loop de envio de conexion al modulo central
-                clearInterval(refreshIntervalId);  
-                sendto=true;
-                console.log(msg.payload);
-            }
+            if(msg.payload=="okmodulo"){  //al recibir este mensaje especial denemos el loop de envio de conexion al modulo central
+            clearInterval(refreshIntervalId);  
+               sendto=true;
+              console.log(msg.payload);
+           }
 
             if(msg.payload=="oktopic"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  

@@ -1,47 +1,47 @@
 {
     "common": {
         "label": {
-            "name": "Name",
+            "name": "Nombre",
             "ok": "Ok",
-            "cancel": "Cancel",
-            "delete": "Delete",
-            "close": "Close"
+            "cancel": "Cancelar",
+            "delete": "Borrar",
+            "close": "Cerrar"
         }
     },
     "workspace": {
-        "defaultName": "Sheet __number__",
-        "renameSheet": "Rename sheet",
-        "confirmDelete": "Confirm delete",
-        "delete": "Are you sure you want to delete '__label__'?",
-        "dropFlowHere": "Drop the flow here"
+        "defaultName": "Hoja __number__",
+        "renameSheet": "Cambiar Nombre",
+        "confirmDelete": "Confirmar Borrado",
+        "delete": "Esta seguro que desea borrar '__label__'?",
+        "dropFlowHere": "Arrastra el diagrama aqui"
     },
     "menu": {
         "label": {
             "sidebar": {
                 "sidebar": "Sidebar",
-                "show": "Toggle Sidebar"
+                "show": "Ocultar Sidebar"
             },
-            "displayStatus": "Display Node Status",
-            "import": "Import",
-            "export": "Export",
+            "displayStatus": "Mostrar estado de nodos",
+            "import": "Importar",
+            "export": "Exportar",
             "clipboard": "Clipboard",
-            "library": "Library",
-            "subflows": "Subflows",
-            "createSubflow": "Create Subflow",
-            "selectionToSubflow": "Selection to Subflow",
-            "workspaces": "Workspaces",
-            "add": "Add",
-            "rename": "Rename",
-            "delete": "Delete",
-            "keyboardShortcuts": "Keyboard Shortcuts",
-            "login": "Login",
-            "logout": "Logout"
+            "library": "Libraria",
+            "subflows": "Sub-diagramas",
+            "createSubflow": "Crear sub-diagrama",
+            "selectionToSubflow": "Seleccion a sub-diagrama",
+            "workspaces": "Espacios de trabajo",
+            "add": "Agregar",
+            "rename": "Renombrar",
+            "delete": "Borrar",
+            "keyboardShortcuts": "Atajos de teclado",
+            "login": "Ingresar",
+            "logout": "Salir"
         }
     },
     "user": {
-        "loggedInAs": "Logged in as __name__",
-        "login": "Login",
-        "loginFailed": "Login failed"
+        "loggedInAs": "Logueado como __name__",
+        "login": "Ingresar",
+        "loginFailed": "Ingreso Fallido"
     },
     "notification": {
         "warning": "<strong>Warning</strong>: __message__",
@@ -52,7 +52,7 @@
 
         "error": "<strong>Error</strong>: __message__",
         "errors": {
-            "lostConnection": "Lost connection to server",
+            "lostConnection": "Conexion perdida con el servidor",
             "cannotAddSubflowToItself": "Cannot add subflow to itself",
             "cannotAddCircularReference": "Cannot add subflow - circular reference detected"
         }
@@ -60,9 +60,9 @@
     "clipboard": {
         "nodes": "Nodes:",
         "selectNodes": "Select the text above and copy to the clipboard.",
-        "pasteNodes": "Paste nodes here",
-        "importNodes": "Import nodes",
-        "exportNodes": "Export nodes to clipboard",
+        "pasteNodes": "Pegar nodos aqui",
+        "importNodes": "Importar nodos",
+        "exportNodes": "Exportar nodes al portapapeles",
         "importUnrecognised": "Imported unrecognised type:",
         "importUnrecognised_plural": "Imported unrecognised types:",
         "nodeCopied": "__count__ node copied",
@@ -70,21 +70,21 @@
         "invalidFlow": "Invalid flow: __message__"
     },
     "deploy": {
-        "deploy": "Deploy",
-        "full": "Full",
-        "fullDesc": "Deploys everything in the workspace",
-        "modifiedFlows": "Modified Flows",
-        "modifiedFlowsDesc": "Only deploys flows that contain changed nodes",
-        "modifiedNodes": "Modified Nodes",
-        "modifiedNodesDesc": "Only deploys nodes that have changed",
-        "successfulDeploy": "Successfully Deployed",
+        "deploy": "Publicar",
+        "full": "Todo",
+        "fullDesc": "Publicar todo el espacio de trabajo",
+        "modifiedFlows": "Diagramas Modificados",
+        "modifiedFlowsDesc": "Solo publicar diagramas que presenten cambios",
+        "modifiedNodes": "Nodos Modificados",
+        "modifiedNodesDesc": "Solo publicar nodos que presenten cambios",
+        "successfulDeploy": "Se publico correctamente",
         "errors": {
-            "noResponse": "no response from server"
+            "noResponse": "no hay respuesta del servidor"
         },
         "confirm": {
             "button": {
-                "confirm": "Confirm deploy",
-                "cancel": "Cancel"
+                "confirm": "Confirmar Publicacion",
+                "cancel": "Cancelar"
             },
             "undeployedChanges": "You have undeployed changes.\n\nLeaving this page will lose these changes.",
             "improperlyConfigured": "Some of the nodes are not properly configured.",
@@ -94,9 +94,9 @@
         }
     },
     "subflow": {
-        "tabLabel": "Subflow: __name__",
-        "editSubflow": "Edit flow __name__",
-        "edit": "Edit flow",
+        "tabLabel": "Sub-diagrama: __name__",
+        "editSubflow": "Editar Diagrama __name__",
+        "edit": "Editar diagrama",
         "subflowInstances": "There is __count__ instance of this subflow",
         "subflowInstances_plural": "There are __count__ instances of this subflow",
         "editSubflowName": "edit name",
@@ -109,18 +109,18 @@
         }
     },
     "editor": {
-        "configEdit": "edit",
-        "configAdd": "add",
-        "configDelete": "Delete",
+        "configEdit": "editar",
+        "configAdd": "agregar",
+        "configDelete": "Borrar",
         "nodesUse": "__count__ node uses this config",
         "nodesUse_plural": "__count__ nodes use this config",
-        "addNewConfig": "Add new __type__ config node",
-        "editConfig": "Edit __type__ config node",
-        "addNewType": "Add new __type__..."
+        "addNewConfig": "Agregar nuevo __type__ config node",
+        "editConfig": "Editar __type__ config node",
+        "addNewType": "Agregar new __type__..."
     },
     "keyboard": {
-        "selectAll": "Select all nodes",
-        "selectAllConnected": "Select all connected nodes",
+        "selectAll": "Seleccionar todos los nodos",
+        "selectAllConnected": "Seleccionar todos los nodos conectados",
         "addRemoveNode": "Add/remove node from selection",
         "deleteSelected": "Delete selected nodes or link",
         "importNode": "Import nodes",
@@ -153,17 +153,17 @@
         "breadcrumb": "Library"
     },
     "palette": {
-        "noInfo": "no information available",
-        "filter": "filter nodes",
+        "noInfo": "no hay informacion disponible",
+        "filter": "filtrar nodos",
         "label": {
             "subflows": "subflows",
-            "input": "input",
-            "output": "output",
-            "function": "function",
+            "input": "entradas",
+            "output": "salidas",
+            "function": "funciones",
             "social": "social",
-            "storage": "storage",
-            "analysis": "analysis",
-            "advanced": "advanced"
+            "storage": "almacenamiento",
+            "analysis": "analisis",
+            "advanced": "avanzado"
         },
         "event": {
             "nodeAdded": "Node added to palette:",
@@ -178,19 +178,19 @@
     },
     "sidebar": {
         "info": {
-            "name": "Information",
+            "name": "Informacion",
             "label": "info",
             "node": "Node",
-            "type": "Type",
+            "type": "Tipo",
             "id": "ID",
-            "subflow": "Subflow",
+            "subflow": "Sub-diagrama",
             "instances": "Instances",
-            "properties": "Properties",
+            "properties": "Propiedades",
             "blank": "blank",
             "arrayItems": "__count__ items"
         },
         "config": {
-            "name": "Configuration nodes",
+            "name": "Configuracion de nodos",
             "label": "config"
         }
     }

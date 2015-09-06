@@ -4,8 +4,8 @@
 
 
 <script type="text/javascript">
-    RED.nodes.registerType('rgb-sensor',{
-        category: 'function',
+    RED.nodes.registerType('rgb-leds',{
+        category: 'output',
         color: '#E49A9A',
         defaults: {
             sid: {value:""},
@@ -16,18 +16,18 @@
             rgbg: {value:""}, 
             rgbb: {value:""},
         },
-        inputs:0,
-        outputs:1,
+        inputs:1,
+        outputs:0,
         icon: "rgb.png",
         label: function() {
-           return this.sid||this.f1||this.f2||this.f3||this.rgbr||this.rgbg||this.rgbb||"rgb-sensor";
+           return this.sid||this.f1||this.f2||this.f3||this.rgbr||this.rgbg||this.rgbb||"rgb-leds";
         }
     });
 </script>
 
  
 
-<script type="text/x-red" data-template-name="rgb-sensor">
+<script type="text/x-red" data-template-name="rgb-leds">
 
 
 
@@ -91,6 +91,6 @@ $('#picker').colpick({
 
 
 
-<script type="text/x-red" data-help-name="rgb-sensor">
+<script type="text/x-red" data-help-name="rgb-leds">
     <p>Comparacion</p>
 </script>

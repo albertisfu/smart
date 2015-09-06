@@ -79,7 +79,7 @@ var executed = false;
 
 
 
-    RED.nodes.registerType("rgb-sensor",Comparacion);
+    RED.nodes.registerType("rgb-leds",Comparacion);
 }
 
 
