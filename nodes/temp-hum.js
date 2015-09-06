@@ -75,6 +75,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
                          //console.log(msg.topic);
                    }
 
+            ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
            msgconf.payload = "{"+":"+node.idmodulo+";:"+"start1"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
@@ -109,7 +110,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 //tal vez sea conveniente agregar un token o algo similar para asegurarnos que el mensaje viene de un nodo confiable y si no viene 
 //de un nodo confiable simplemente no hacer node.send()
 
-            if(msg.payload=="okmodulo"){  //al recibir este mensaje especial denemos el loop de envio de conexion al modulo central
+            if(msg.payload=="okcentral"){  //al recibir este mensaje especial denemos el loop de envio de conexion al modulo central
             clearInterval(refreshIntervalId);  
                sendto=true;
               console.log(msg.payload);
@@ -174,7 +175,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             this.password = this.credentials.password;
         }
     }
-    RED.nodes.registerType("mqtt-brokersen",MQTTBrokerNode,{
+    RED.nodes.registerType("mqtt-broker-temp",MQTTBrokerNode,{
         credentials: {
             user: {type:"text"},
             password: {type: "password"}

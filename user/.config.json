@@ -282,7 +282,7 @@
      "name": "temp-hum",
      "types": [
       "temp-hum",
-      "mqtt-brokersen"
+      "mqtt-broker-temp"
      ],
      "enabled": true,
      "module": "node-red",
@@ -291,7 +291,8 @@
     "servomotor": {
      "name": "servomotor",
      "types": [
-      "servomotor"
+      "servomotor",
+      "mqtt-broker-servo"
      ],
      "enabled": true,
      "module": "node-red",

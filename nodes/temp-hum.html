@@ -9,8 +9,8 @@
         <input type="text" id="node-input-idcentral" data-i18n="">
     </div>
 <div class="form-row">
-        <label for="node-input-idmodulo"><i class="fa fa-tag"></i>ID Sensor</label>
-        <input type="text" id="node-input-idmodulo" data-i18n="ID unico sensor">
+        <label for="node-input-idmodulo"><i class="fa fa-tag"></i>ID Modulo</label>
+        <input type="text" id="node-input-idmodulo" data-i18n="ID unico modulo">
     </div>
  <div class="form-row">
         <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
@@ -30,7 +30,7 @@
             name: {value:"Ambiente"},
             idmodulo: {value:"",required:true},
             idcentral: {value:"",required:true},
-            broker: {type:"mqtt-brokersen", required:true}
+            broker: {type:"mqtt-broker-temp", required:true}
         },
         inputs:0,
         outputs:2,
@@ -42,7 +42,7 @@
 </script>
 
 
-<script type="text/x-red" data-template-name="mqtt-brokersen">
+<script type="text/x-red" data-template-name="mqtt-broker-temp">
     <div class="form-row node-input-broker">
         <label for="node-config-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
         <input class="input-append-left" type="text" id="node-config-input-broker" placeholder="localhost" style="width: 40%;" >
@@ -64,7 +64,7 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('mqtt-brokersen',{
+    RED.nodes.registerType('mqtt-broker-temp',{
         category: 'config',
         defaults: {
             broker: {value:"",required:true},
