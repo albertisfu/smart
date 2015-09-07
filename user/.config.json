@@ -315,6 +315,42 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rgb.js"
+    },
+    "counter": {
+     "name": "counter",
+     "types": [
+      "contador"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/counter.js"
+    },
+    "presencia": {
+     "name": "presencia",
+     "types": [
+      "presencia"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/presencia.js"
+    },
+    "luminosidad": {
+     "name": "luminosidad",
+     "types": [
+      "luminosidad"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/luminosidad.js"
+    },
+    "led": {
+     "name": "led",
+     "types": [
+      "led"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/led.js"
     }
    }
   },

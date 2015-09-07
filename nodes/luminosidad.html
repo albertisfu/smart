@@ -1,30 +1,30 @@
 <script type="text/javascript">
-    RED.nodes.registerType('constante',{
-        category: 'function',
-        color: '#a6bbcf',
+    RED.nodes.registerType('luminosidad',{
+        category: 'input',
+        color: '#efe483',
         defaults: {
-            name: {value:"Constante"},
+            name: {value:"Luminosidad"},
             valor: {value:""},
         },
-        inputs:1,
-        outputs:2,
-        icon: "constant.png",
+        inputs:0,
+        outputs:1,
+        icon: "luminosidad.png",
         label: function() {
-            return this.name||"constante";
+            return this.name||"luminosidad";
         }
     });
 </script>
-<script type="text/x-red" data-template-name="constante">
+<script type="text/x-red" data-template-name="luminosidad">
     <div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
 
         <label for="node-input-valor"><i class="fa fa-globe">Constante:</i></label>
-        <input type="text" id="node-input-valor" placeholder="Ingrese constante">
+        <input type="text" id="node-input-valor" placeholder="Ingrese luminosidad">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="constante">
+<script type="text/x-red" data-help-name="luminosidad">
     <p>Constante</p>
 </script>
 
