@@ -175,27 +175,6 @@
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/io/23-watch.js"
     },
-    "tcpin": {
-     "name": "tcpin",
-     "types": [
-      "tcp in",
-      "tcp out",
-      "tcp request"
-     ],
-     "enabled": true,
-     "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/io/31-tcpin.js"
-    },
-    "udp": {
-     "name": "udp",
-     "types": [
-      "udp in",
-      "udp out"
-     ],
-     "enabled": true,
-     "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/io/32-udp.js"
-    },
     "switch": {
      "name": "switch",
      "types": [
@@ -351,6 +330,15 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/led.js"
+    },
+    "relevador": {
+     "name": "relevador",
+     "types": [
+      "relevador"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/relevador.js"
     }
    }
   },

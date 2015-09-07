@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    RED.nodes.registerType('relevador',{
+        category: 'output',
+        color: '#77d557',
+        defaults: {
+            name: {value:"Relevador"},
+            valor: {value:""},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "relevador.png",
+        label: function() {
+            return this.name||"relevador";
+        }
+    });
+</script>
+<script type="text/x-red" data-template-name="relevador">
+    <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+
+        <label for="node-input-valor"><i class="fa fa-globe">Constante:</i></label>
+        <input type="text" id="node-input-valor" placeholder="Ingrese relevador">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="relevador">
+    <p>Constante</p>
+</script>
+
+
+
