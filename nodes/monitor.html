@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    RED.nodes.registerType('monitor',{
+        category: 'output',
+        color: '#77d557',
+        defaults: {
+            name: {value:"Monitor"},
+            valor: {value:""},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "monitor.png",
+        label: function() {
+            return this.name||"monitor";
+        }
+    });
+</script>
+<script type="text/x-red" data-template-name="monitor">
+    <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+
+        <label for="node-input-valor"><i class="fa fa-globe">Constante:</i></label>
+        <input type="text" id="node-input-valor" placeholder="Ingrese monitor">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="monitor">
+    <p>Constante</p>
+</script>
+
+
+

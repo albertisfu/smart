@@ -125,6 +125,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             var1 = resultado; });
             parse(msg.payload, 1, function(resultado){ 
             var2 = resultado; });
+            
             topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
             var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
 

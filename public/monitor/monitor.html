@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Custom interval</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+    body {
+        text-align: center;
+    }
+
+    #g1,
+    #g2,
+    #g3 {
+        width: 500px;
+        height: 360px;
+        display: inline-block;
+        margin: 1em;
+    }
+
+    p {
+        display: block;
+        width: 450px;
+        margin: 2em auto;
+        text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="g1"></div>
+    
+    <script src="./raphael-2.1.4.min.js"></script>
+    <script src="./justgage-1.1.0.min.js"></script>
+    <script>
+    var g1, g2, g3;
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var g1 = new JustGage({
+            id: "g1",
+            value: getRandomInt(350, 980),
+            min: 350,
+            max: 980,
+            title: "Lone Ranger",
+            label: "miles traveled"
+        });
+
+
+        setInterval(function() {
+            g1.refresh(getRandomInt(350, 980));
+        }, 2500);
+    });
+    </script>
+</body>
+
+</html>

@@ -339,6 +339,15 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/relevador.js"
+    },
+    "monitor": {
+     "name": "monitor",
+     "types": [
+      "monitor"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/monitor.js"
     }
    }
   },
