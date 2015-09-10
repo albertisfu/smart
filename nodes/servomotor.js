@@ -58,10 +58,10 @@ var isUtf8 = require('is-utf8');
         msgconf.topic = node.idcentral;
         }
 
-    msgconf.payload = "{"+":"+node.idmodulo+";:"+"start1"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+    msgconf.payload = "{"+":"+node.idmodulo+";:"+"palomitascachorritosacidoacetilsalicilico"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 500);
+    loop(function(var1){ }); } , 1000);
 
 
 ///Funcion que responde al recibir un mensaje con el topic suscrito

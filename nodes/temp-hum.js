@@ -51,6 +51,7 @@ los mensajes del modulo a la plataforma se recibiran via "topic idmodulo"
         } 
     } 
 
+
 function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
     if(sendto==false){
     var1=node.client.publish(msgconf, function(return1){ });
@@ -75,8 +76,10 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
                          //console.log(msg.topic);
                    }
 
+
+//var decimal = parseInt(hexString, 16);
             ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
-           msgconf.payload = "{"+":"+node.idmodulo+";:"+"start1"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"palomitascachorritosacidoacetilsalicilico1"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
@@ -93,7 +96,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
        // var  sendto=false;
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 500);
+    loop(function(var1){ }); } , 400);
 
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
@@ -125,7 +128,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             var1 = resultado; });
             parse(msg.payload, 1, function(resultado){ 
             var2 = resultado; });
-            
+
             topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
             var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
 
