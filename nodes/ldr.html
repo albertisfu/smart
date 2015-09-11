@@ -1,21 +1,58 @@
 
  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
+<link rel="stylesheet" href="css/tooltip.css" type="text/css"/>
 
 
 <script type="text/x-red" data-template-name="ldr">
 
 
     <div class="form-row">
+        
+
         <label for="node-input-name"><i class="icon-tag"></i> Nombre</label>
+<a href="#" class="tooltipp">
+    <img src="css/help.png" style="height:20px;width:20px;" alt="CSS Tooltip demo 2">
+    <span>
+      
+        Nombre del bloque
+    </span>
+</a>
+
+
+
+
+
         <input type="text" id="node-input-name" placeholder="Name">
+
+
+
     </div>
     <div class="form-row">
         <label for="node-input-idcentral"><i class="fa fa-tasks"></i>ID Central</label>
+
+<a href="#" class="tooltipp">
+    <img src="css/help.png" style="height:20px;width:20px;" alt="CSS Tooltip demo 2">
+    <span>
+      
+        Numero unico del modulo central
+    </span>
+</a>
+
+
         <input type="text" id="node-input-idcentral" data-i18n="">
     </div>
 <div class="form-row">
         <label for="node-input-idmodulo"><i class="fa fa-tag"></i>ID Modulo</label>
+
+<a href="#" class="tooltipp">
+    <img src="css/help.png" style="height:20px;width:20px;" alt="CSS Tooltip demo 2">
+    <span>
+      
+        Numero unico del sensor de iluminacion
+    </span>
+</a>
+
+
         <input type="text" id="node-input-idmodulo" data-i18n="ID unico modulo">
     </div>
  <div class="form-row">
@@ -38,6 +75,12 @@
 <div class="form-row">
 <p>
   <label for="node-input-iluminacionselec"><i class="fa fa-sun-o"></i>Escojer nivel de iluminacion:</label>
+
+
+
+
+
+
   <input type="text" id="node-input-iluminacionselec" readonly style="border:0; color:#f6931f; font-weight:bold; width:100px;">
   <div class="indicadorluz">
   <div class="luzizq">

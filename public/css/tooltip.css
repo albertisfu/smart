@@ -1,0 +1,19 @@
+a.tooltipp {outline:none; }
+a.tooltipp strong {line-height:30px;}
+a.tooltipp:hover {text-decoration:none;} 
+a.tooltipp span {
+    z-index:10;display:none; padding:10px 10px;
+    margin-top:0px; margin-left:0px;
+    width:220px; line-height:16px; font-size: 13px;
+}
+a.tooltipp:hover span{
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;}
+.calloutt {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+    
+/*CSS3 extras*/
+a.tooltipp span
+{
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
