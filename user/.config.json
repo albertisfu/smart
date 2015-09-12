@@ -367,6 +367,15 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/incremento.js"
+    },
+    "decremento": {
+     "name": "decremento",
+     "types": [
+      "decremento"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/decremento.js"
     }
    }
   },

@@ -17,8 +17,33 @@ socket.on("connect", function () {
        
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
+
+    .monitor{
+    width: 300px;
+    float: right;
+    margin: 20px 194px 0 0px;
+    font-size: 28px;
+    font-family: sans-serif;
+}
+
+.logo {
+    width: 100px;
+    float: left;
+    margin-left: 30px;
+}
+
+.header {
+    height: 80px;
+    background: linear-gradient(to bottom, #BB0053 0%,#8C0249 100%);
+    box-sizing: border-box;
+    padding: 0px 0px 0px 20px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
     body {
         text-align: center;
+            margin: 0px;
     }
 
     #g1,
@@ -40,16 +65,31 @@ socket.on("connect", function () {
 
 
    </head>
-   <body>
+   <body><div class="header"> <div class="logo"> 
+<img src="./smartl.png" style="
+    height: 73px;
+        margin-top: 4px;
+    margin-left: 77%;
+    ">
+</div>
+
+     <div class="monitor"> 
+Sistema de Monitoreo
+    </div>
+
+
+    </div>
      <div id="g1"></div>
       <div id="g2"></div>
+       <div id="g3"></div>
     
     <script src="./raphael-2.1.4.min.js"></script>
     <script src="./justgage-1.1.0.min.js"></script>
     <script>
-    var g1, g2;
+    var g1, g2, g3;
  var msgtopic=0;
  var msgtopic1=0;
+ var msgtopic2=0;
  var type;
 
 
@@ -73,6 +113,21 @@ socket.on("connect", function () {
             label: ""
         });
 
+
+         var g3 = new JustGage({
+            id: "g3",
+            value: msgtopic2,
+            min: 0,
+            max: 100,
+            title: "Contador",
+            label: "",
+            donut: true,
+            gaugeWidthScale: 0.6,
+            counter: true
+        });
+
+
+
 socket.on('message', function(data){
 console.log(data.payload);
 
@@ -88,9 +143,15 @@ if(data.type=="hum"){
     g2.refresh(msgtopic1);
 }
 
+
+if(data.type=="conta"){
+
+    msgtopic2=parseInt(data.payload);
+    g3.refresh(msgtopic2);
+}
+
+
     });
-
-
 
 
     });
@@ -99,5 +160,6 @@ if(data.type=="hum"){
 
 
     </script>
+    <div class="footer"> </div>
    </body>
 </html>

@@ -2,7 +2,7 @@ module.exports = function(RED) {
 
 	 "use strict";
 
-    function Incremento(n) {
+    function Decremento(n) {
 
         RED.nodes.createNode(this,n);
         this.valor = n.valor;
@@ -18,12 +18,12 @@ module.exports = function(RED) {
 
 this.on('input', function(msg) { //Ejecutar al recibir mensaje
 
-msg.topic = "incre";
+msg.topic = "decre";
 msg.payload = msg.payload;
 node.send([msg]);
 
 
         });
     }
-    RED.nodes.registerType("incremento",Incremento);
+    RED.nodes.registerType("decremento",Decremento);
 }
