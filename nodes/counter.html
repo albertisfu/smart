@@ -5,6 +5,7 @@
         defaults: {
             name: {value:"Counter"},
             valor: {value:""},
+            noti: {value:""},
         },
         inputs:1,
         outputs:3,
@@ -16,11 +17,12 @@
 </script>
 <script type="text/x-red" data-template-name="contador">
     <div class="form-row">
-    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <label for="node-input-name"><i class="icon-tag"></i> Nombre</label>
         <input type="text" id="node-input-name" placeholder="Name">
-
-        <label for="node-input-valor"><i class="fa fa-globe">Constante:</i></label>
+        <label for="node-input-valor"><i class="fa fa-globe">Inicio:</i></label>
         <input type="text" id="node-input-valor" placeholder="Ingrese contador">
+        <label for="node-input-valor"><i class="fa fa-globe">Notificacion:</i></label>
+        <input type="text" id="node-input-noti" placeholder="Ingrese valor de">
     </div>
 </script>
 

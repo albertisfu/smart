@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    RED.nodes.registerType('incremento',{
+        category: 'function',
+        color: '#ce6393',
+        defaults: {
+            name: {value:"Incremento"},
+        },
+        inputs:1,
+        outputs:1,
+        icon: "counter.png",
+        label: function() {
+            return this.name||"incremento";
+        }
+    });
+</script>
+<script type="text/x-red" data-template-name="incremento">
+    <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Nombre</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="incremento">
+    <p>Constante</p>
+</script>
+
+
+

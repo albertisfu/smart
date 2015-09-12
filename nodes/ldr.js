@@ -6,7 +6,7 @@ module.exports = function(RED) {
     var isUtf8 = require('is-utf8');
 
 
-    function TempHum(n) {
+    function LDR(n) {
        
         RED.nodes.createNode(this,n);
         this.idcentral = n.idcentral;
@@ -16,9 +16,12 @@ module.exports = function(RED) {
         this.idmodulo = n.idmodulo;
         this.topic = n.idmodulo;
         this.brokerConfig = RED.nodes.getNode(this.broker);
+        this.iluminacionselec = n.iluminacionselec; /* Valor iluminacion escogido*/
+        var lum = this.iluminacionselec;
         var var1;
         var var2;
         var topic2;
+        var res;
 var  sendto=false;
 
 /****
@@ -52,6 +55,21 @@ los mensajes del modulo a la plataforma se recibiran via "topic idmodulo"
     } 
 
 
+/* Salida */
+
+if (iluminacionselec >= val1){  
+    res = 1;
+} 
+else { 
+    res = 0;
+}
+
+msg.payload = res; //Asignamos al payload el valor de resultante de la comparacion
+
+node.send(msg); //enviamos el mensaje
+
+
+
 function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
     if(sendto==false){
     var1=node.client.publish(msgconf, function(return1){ });
@@ -76,10 +94,8 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
                          //console.log(msg.topic);
                    }
 
-
-//var decimal = parseInt(hexString, 16);
             ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
-           msgconf.payload = "{"+":"+node.idmodulo+";:"+"starth"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"start1"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
@@ -96,7 +112,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
        // var  sendto=false;
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 1000);
+    loop(function(var1){ }); } , 500);
 
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
@@ -119,17 +135,16 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
               console.log(msg.payload);
            }
 
-            if(msg.payload=="oktopich"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+            if(msg.payload=="oktopic"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
             }
 
-            parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
+            parse(msg.payload, 0, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
-            parse(msg.payload, 2, function(resultado){ 
+            parse(msg.payload, 1, function(resultado){ 
             var2 = resultado; });
-
-
+            
             topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
             var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
 
@@ -165,7 +180,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             }
         });
     }
-    RED.nodes.registerType("temp-hum",TempHum);
+    RED.nodes.registerType("ldr",LDR);
 
 
 ///Funcion Broker
@@ -180,7 +195,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             this.password = this.credentials.password;
         }
     }
-    RED.nodes.registerType("mqtt-broker-temp",MQTTBrokerNode,{
+    RED.nodes.registerType("mqtt-broker-ldr",MQTTBrokerNode,{
         credentials: {
             user: {type:"text"},
             password: {type: "password"}

@@ -1,0 +1,181 @@
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="css/tooltip.css" type="text/css"/>
+
+
+<script type="text/x-red" data-template-name="ldr">
+
+
+    <div class="form-row">
+        
+
+        <label for="node-input-name"><i class="icon-tag"></i> Nombre</label>
+<a href="#" class="tooltipp">
+    <img src="css/help.png" style="height:20px;width:20px;" alt="CSS Tooltip demo 2">
+    <span>
+      
+        Nombre del bloque
+    </span>
+</a>
+
+
+
+
+
+        <input type="text" id="node-input-name" placeholder="Name">
+
+
+
+    </div>
+    <div class="form-row">
+        <label for="node-input-idcentral"><i class="fa fa-tasks"></i>ID Central</label>
+
+<a href="#" class="tooltipp">
+    <img src="css/help.png" style="height:20px;width:20px;" alt="CSS Tooltip demo 2">
+    <span>
+      
+        Numero unico del modulo central
+    </span>
+</a>
+
+
+        <input type="text" id="node-input-idcentral" data-i18n="">
+    </div>
+<div class="form-row">
+        <label for="node-input-idmodulo"><i class="fa fa-tag"></i>ID Modulo</label>
+
+<a href="#" class="tooltipp">
+    <img src="css/help.png" style="height:20px;width:20px;" alt="CSS Tooltip demo 2">
+    <span>
+      
+        Numero unico del sensor de iluminacion
+    </span>
+</a>
+
+
+        <input type="text" id="node-input-idmodulo" data-i18n="ID unico modulo">
+    </div>
+ <div class="form-row">
+        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
+        <input type="text" id="node-input-broker">
+    </div>
+    
+
+<style>
+.luzder {
+    float: right;
+    padding-top: 20px;
+}
+.luzizq {
+    float: left;
+    padding-top: 20px;
+}
+</style>
+
+<div class="form-row">
+<p>
+  <label for="node-input-iluminacionselec"><i class="fa fa-sun-o"></i>Escojer nivel de iluminacion:</label>
+
+
+
+
+
+
+  <input type="text" id="node-input-iluminacionselec" readonly style="border:0; color:#f6931f; font-weight:bold; width:100px;">
+  <div class="indicadorluz">
+  <div class="luzizq">
+  + Iluminación
+  </div>
+  <div class="luzder">
+  - Iluminación
+  </div>
+</p>
+ 
+<div id="slider-range-min"></div>
+    
+</div>
+
+
+    
+</script>
+
+<script type="text/x-red" data-help-name="ldr">
+    <p>Sensor que obtiene los datos de la iluminacion actual, permite elegir un nivel de iluminacion, si es menor la salida se desactiva, si es mayor o igual la salida se activa.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ldr',{
+        category: 'input',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"Sensor de Iluminación"},
+            iluminacionselec : {value:""},
+            idmodulo: {value:"",required:true},
+            idcentral: {value:"",required:true},
+            broker: {type:"mqtt-broker-ldr", required:true}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "ldr.png",
+        label: function() {
+            return this.name||"ldr";
+        },
+
+oneditprepare: function() {
+
+$( "#slider-range-min" ).slider({
+      range: "min",
+      value: 125,
+      min: 0,
+      max: 255,
+      slide: function( event, ui ) {
+        $( "#node-input-iluminacionselec" ).val(ui.value );
+      }
+    });
+    $( "#node-input-iluminacionselec" ).val($( "#slider-range-min" ).slider( "value" ) );
+
+},
+
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="mqtt-broker-ldr">
+    <div class="form-row node-input-broker">
+        <label for="node-config-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
+        <input class="input-append-left" type="text" id="node-config-input-broker" placeholder="localhost" style="width: 40%;" >
+        <label for="node-config-input-port" style="margin-left: 10px; width: 35px; "> <span data-i18n="mqtt.label.port"></span></label>
+        <input type="text" id="node-config-input-port" data-i18n="[placeholder]mqtt.label.port" style="width:45px">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-clientid"><i class="fa fa-tag"></i> <span data-i18n="mqtt.label.clientid"></span></label>
+        <input type="text" id="node-config-input-clientid" data-i18n="[placeholder]mqtt.placeholder.clientid">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-user"><i class="fa fa-user"></i> <span data-i18n="common.label.username"></span></label>
+        <input type="text" id="node-config-input-user">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-lock"></i> <span data-i18n="common.label.password"></span></label>
+        <input type="password" id="node-config-input-password">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt-broker-ldr',{
+        category: 'config',
+        defaults: {
+            broker: {value:"",required:true},
+            port: {value:1883,required:true,validate:RED.validators.number()},
+            clientid: { value:"" }
+        },
+        credentials: {
+            user: {type:"text"},
+            password: {type: "password"}
+        },
+        label: function() {
+            if (this.broker == "") { this.broker = "localhost"; }
+            return (this.clientid?this.clientid+"@":"")+this.broker+":"+this.port;
+        }
+    });
+</script>

@@ -58,7 +58,7 @@ var isUtf8 = require('is-utf8');
         msgconf.topic = node.idcentral;
         }
 
-    msgconf.payload = "{"+":"+node.idmodulo+";:"+"palomitascachorritosacidoacetilsalicilico"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+    msgconf.payload = "{"+":"+node.idmodulo+";:"+"starts"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
     loop(function(var1){ }); } , 1000);
@@ -81,7 +81,7 @@ var isUtf8 = require('is-utf8');
               console.log(msg.payload);
            }
 
-            if(msg.payload=="oktopic"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+            if(msg.payload=="oktopics"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
             }   }, this.id);

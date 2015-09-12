@@ -348,6 +348,25 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/monitor.js"
+    },
+    "ldr": {
+     "name": "ldr",
+     "types": [
+      "ldr",
+      "mqtt-broker-ldr"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/ldr.js"
+    },
+    "incremento": {
+     "name": "incremento",
+     "types": [
+      "incremento"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/incremento.js"
     }
    }
   },
