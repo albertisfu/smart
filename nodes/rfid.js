@@ -79,7 +79,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
 //var decimal = parseInt(hexString, 16);
             ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
-           msgconf.payload = "{"+":"+node.idmodulo+";:"+"startf"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"startr"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
@@ -114,7 +114,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 //de un nodo confiable simplemente no hacer node.send()
 
 
-            if(msg.payload=="oktopicf"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+            if(msg.payload=="oktopicr"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
                     clearInterval(refreshIntervalId);  

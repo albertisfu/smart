@@ -54,21 +54,7 @@ los mensajes del modulo a la plataforma se recibiran via "topic idmodulo"
         } 
     } 
 
-
 /* Salida */
-
-if (iluminacionselec >= val1){  
-    res = 1;
-} 
-else { 
-    res = 0;
-}
-
-msg.payload = res; //Asignamos al payload el valor de resultante de la comparacion
-
-node.send(msg); //enviamos el mensaje
-
-
 
 function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
     if(sendto==false){
@@ -140,19 +126,21 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
                     console.log(msg.payload);
             }
 
-            parse(msg.payload, 0, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
-            var1 = resultado; });
             parse(msg.payload, 1, function(resultado){ 
-            var2 = resultado; });
-            
-            topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
-            var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
+            var1 = resultado; });
 
-            if(var1 && var1){  //solo enviamos el mensaje si contiene un valor util
-            msg.payload = var1; //asignamos el primer valor var1 al payload del primer mensaje
-            msg2.payload = var2; //asignamos el segundo valor var2 al payload del segundo mensaje
-            node.send([ msg , msg2 ]); //enviamos los 2 mensajes
-            }   }, this.id);
+            if (lum >= val1){  
+                res = 1;
+                    } 
+            else { 
+                 res = 0;
+                    }
+
+        msg.payload = res; //Asignamos al payload el valor de resultante de la comparacion
+
+            node.send(msg); //enviamos el mensaje
+
+           }, this.id);
 
             ///funciones al perder conexion
                 this.client.on("connectionlost",function() {
