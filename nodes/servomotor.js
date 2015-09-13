@@ -104,6 +104,8 @@ var isUtf8 = require('is-utf8');
                 }
 
                 payvar = msg.payload;
+                payvar = parseInt(payvar); 
+                payvar = Math.round(payvar);
                 msg.payload = "{"+":"+node.idmodulo+";:"+payvar+"}"
 
                 if ( msg.hasOwnProperty("payload")) {

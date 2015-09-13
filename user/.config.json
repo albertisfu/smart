@@ -289,7 +289,7 @@
     "rgb": {
      "name": "rgb",
      "types": [
-      "rgb-leds"
+      "rgbleds"
      ],
      "enabled": true,
      "module": "node-red",
@@ -312,15 +312,6 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/presencia.js"
-    },
-    "luminosidad": {
-     "name": "luminosidad",
-     "types": [
-      "luminosidad"
-     ],
-     "enabled": true,
-     "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/luminosidad.js"
     },
     "led": {
      "name": "led",
@@ -386,6 +377,15 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rfid.js"
+    },
+    "luminosidad": {
+     "name": "luminosidad",
+     "types": [
+      "luminosidad"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/luminosidad.js"
     }
    }
   },

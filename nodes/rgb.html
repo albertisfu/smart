@@ -4,7 +4,7 @@
 
 
 <script type="text/javascript">
-    RED.nodes.registerType('rgb-leds',{
+    RED.nodes.registerType('rgbleds',{
         category: 'output',
         color: '#E49A9A',
         defaults: {
@@ -12,22 +12,20 @@
             f1: {value:""},
             f2: {value:""},
             f3: {value:""},
-            rgbr: {value:""},
-            rgbg: {value:""}, 
-            rgbb: {value:""},
+            hexa: {value:""},
         },
         inputs:1,
         outputs:0,
         icon: "rgb.png",
         label: function() {
-           return this.sid||this.f1||this.f2||this.f3||this.rgbr||this.rgbg||this.rgbb||"rgb-leds";
+           return this.sid||this.f1||this.f2||this.f3||this.rgbr||this.rgbg||this.rgbb||"rgbleds";
         }
     });
 </script>
 
  
 
-<script type="text/x-red" data-template-name="rgb-leds">
+<script type="text/x-red" data-template-name="rgbleds">
 
 
 
@@ -76,12 +74,13 @@ $('#picker').colpick({
     onChange: function(hsb,hex,rgb,el,bySetColor) {
         //document.getElementById("foo").innerHTML = hex;
  
-        var rgbr = rgb.r;
-        var rgbg = rgb.g;
-        var rgbb = rgb.b;
-        $("#node-input-rgbr").val(rgbr);
-        $("#node-input-rgbg").val(rgbg);
-        $("#node-input-rgbb").val(rgbb);
+        //var rgbr = rgb.r;
+        //var rgbg = rgb.g;
+        //var rgbb = rgb.b;
+        var hexa = hex;
+        $("#node-input-rgbr").val(hexa);
+        //$("#node-input-rgbg").val(rgbg);
+        //$("#node-input-rgbb").val(rgbb);
     }
 });
 </script>
@@ -91,6 +90,6 @@ $('#picker').colpick({
 
 
 
-<script type="text/x-red" data-help-name="rgb-leds">
+<script type="text/x-red" data-help-name="rgbleds">
     <p>Comparacion</p>
 </script>

@@ -107,25 +107,22 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             if (isUtf8(payload)) { payload = payload.toString(); }
             var msg = {topic:topic,payload:payload,qos:qos,retain:retain};
             if ((node.brokerConfig.broker === "localhost")||(node.brokerConfig.broker === "127.0.0.1")) {
-                        msg._topic = topic;
+            msg._topic = topic;
             }          
 //////Revisamos que el primer mensaje que llegue sea un ok o algun mensaje de respuesta para indicar que se conecto correctamente.
 //tal vez sea conveniente agregar un token o algo similar para asegurarnos que el mensaje viene de un nodo confiable y si no viene 
 //de un nodo confiable simplemente no hacer node.send()
 
-
             if(msg.payload=="oktopicr"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
-                    node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
-                    console.log(msg.payload);
-                    clearInterval(refreshIntervalId);  
+                node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
+                console.log(msg.payload);
+                clearInterval(refreshIntervalId);  
                sendto=true;
             }
-
 
 ///en el parse cero se encuentra la direccion del modulo
             parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
-           
             msg.payload = var1; //asignamos el primer valor var1 al payload del primer mensaje
             node.send(msg); //enviamos los 2 mensajes
              }, this.id);

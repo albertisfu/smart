@@ -81,7 +81,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
                    }
 
             ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
-           msgconf.payload = "{"+":"+node.idmodulo+";:"+"start1"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"startl"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
@@ -121,15 +121,16 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
               console.log(msg.payload);
            }
 
-            if(msg.payload=="oktopic"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+            if(msg.payload=="oktopicl"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
             }
 
             parse(msg.payload, 1, function(resultado){ 
+                
             var1 = resultado; });
 
-            if (lum >= val1){  
+            if (lum >= var1){  
                 res = 1;
                     } 
             else { 
@@ -138,7 +139,9 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
         msg.payload = res; //Asignamos al payload el valor de resultante de la comparacion
 
-            node.send(msg); //enviamos el mensaje
+        var msg2 = {payload:""};
+        msg2.payload = var1;
+        node.send([msg, msg2]); //enviamos el mensaje
 
            }, this.id);
 
