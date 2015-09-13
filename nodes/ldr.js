@@ -17,7 +17,7 @@ module.exports = function(RED) {
         this.topic = n.idmodulo;
         this.brokerConfig = RED.nodes.getNode(this.broker);
         this.iluminacionselec = n.iluminacionselec; /* Valor iluminacion escogido*/
-        var lum = this.iluminacionselec;
+        var lum = parseInt( this.iluminacionselec);
         var var1;
         var var2;
         var topic2;
@@ -127,8 +127,10 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             }
 
             parse(msg.payload, 1, function(resultado){ 
-                
+
             var1 = resultado; });
+
+        var1 = parseInt(var1);
 
             if (lum >= var1){  
                 res = 1;

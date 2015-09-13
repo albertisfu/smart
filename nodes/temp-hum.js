@@ -121,7 +121,6 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
                     console.log(msg.payload);
             }
 
-
 ///en el parse cero se encuentra la direccion del modulo
             parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
