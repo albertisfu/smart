@@ -376,6 +376,16 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/decremento.js"
+    },
+    "rfid": {
+     "name": "rfid",
+     "types": [
+      "rfid",
+      "mqtt-broker-rfid"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rfid.js"
     }
    }
   },

@@ -30,12 +30,11 @@ var isUtf8 = require('is-utf8');
         if(sendto==false){
         var1=node.client.publish(msgconf, function(return1){ });
           }
-    }
-
+ }
     this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
     console.log("start")
             clearInterval(refreshIntervalId);  
-        });
+       });
 
     /*this.on('input', function(msg) { //Ejecutar al recibir mensaje
 
@@ -61,7 +60,7 @@ var isUtf8 = require('is-utf8');
     msgconf.payload = "{"+":"+node.idmodulo+";:"+"starts"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 1000);
+    loop(function(var1){ }); } , 1000); 
 
 
 ///Funcion que responde al recibir un mensaje con el topic suscrito
@@ -74,14 +73,9 @@ var isUtf8 = require('is-utf8');
                         msg._topic = topic;
             }          
 
-
-            if(msg.payload=="okcentral"){  //al recibir este mensaje especial denemos el loop de envio de conexion al modulo central
-            clearInterval(refreshIntervalId);  
-               sendto=true;
-              console.log(msg.payload);
-           }
-
             if(msg.payload=="oktopics"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+                clearInterval(refreshIntervalId);  
+               sendto=true;
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
             }   }, this.id);
@@ -114,6 +108,7 @@ var isUtf8 = require('is-utf8');
 
                 if ( msg.hasOwnProperty("payload")) {
                     if (msg.hasOwnProperty("topic") && (typeof msg.topic === "string") && (msg.topic !== "")) { // topic must exist
+                        //node.client.publish(msgconf);
                         node.client.publish(msg);  // send the message
                     }
                     else { node.warn(RED._("mqtt.errors.invalid-topic")); }

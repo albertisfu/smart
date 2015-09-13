@@ -6,7 +6,7 @@ module.exports = function(RED) {
     var isUtf8 = require('is-utf8');
 
 
-    function TempHum(n) {
+    function Rfid(n) {
        
         RED.nodes.createNode(this,n);
         this.idcentral = n.idcentral;
@@ -79,7 +79,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
 //var decimal = parseInt(hexString, 16);
             ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
-           msgconf.payload = "{"+":"+node.idmodulo+";:"+"starth"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"startf"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
@@ -113,30 +113,22 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 //tal vez sea conveniente agregar un token o algo similar para asegurarnos que el mensaje viene de un nodo confiable y si no viene 
 //de un nodo confiable simplemente no hacer node.send()
 
-            if(msg.payload=="oktopich"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
-                    
-                 clearInterval(refreshIntervalId);  
-               sendto=true;
-            node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
+
+            if(msg.payload=="oktopicf"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+                    node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
+                    clearInterval(refreshIntervalId);  
+               sendto=true;
             }
 
 
 ///en el parse cero se encuentra la direccion del modulo
             parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
-            parse(msg.payload, 2, function(resultado){ 
-            var2 = resultado; });
-
-
-            topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
-            var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
-
-            if(var1 && var1){  //solo enviamos el mensaje si contiene un valor util
+           
             msg.payload = var1; //asignamos el primer valor var1 al payload del primer mensaje
-            msg2.payload = var2; //asignamos el segundo valor var2 al payload del segundo mensaje
-            node.send([ msg , msg2 ]); //enviamos los 2 mensajes
-            }   }, this.id);
+            node.send(msg); //enviamos los 2 mensajes
+             }, this.id);
 
             ///funciones al perder conexion
                 this.client.on("connectionlost",function() {
@@ -164,7 +156,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             }
         });
     }
-    RED.nodes.registerType("temp-hum",TempHum);
+    RED.nodes.registerType("rfid",Rfid);
 
 
 ///Funcion Broker
@@ -179,11 +171,10 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             this.password = this.credentials.password;
         }
     }
-    RED.nodes.registerType("mqtt-broker-temp",MQTTBrokerNode,{
+    RED.nodes.registerType("mqtt-broker-rfid",MQTTBrokerNode,{
         credentials: {
             user: {type:"text"},
             password: {type: "password"}
         }
     });
 }
-
