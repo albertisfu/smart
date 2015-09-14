@@ -19,6 +19,7 @@ module.exports = function(RED) {
         var var1;
         var var2;
         var topic2;
+        var sensor2;
 var  sendto=false;
 
 /****
@@ -96,7 +97,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
        // var  sendto=false;
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 1000);
+    loop(function(var1){ }); } , 3000);
 
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
@@ -121,10 +122,22 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             }
 
 ///en el parse cero se encuentra la direccion del modulo
-            parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
+     parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
+            sensor2 = resultado; });
+
+            console.log(sensor2);
+
+            parse(msg.payload, 2, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
+
+            if(sensor2 == "tag") {
+
             msg.payload = var1; //asignamos el primer valor var1 al payload del primer mensaje
             node.send(msg); //enviamos los 2 mensajes
+             
+
+            }   
+    
              }, this.id);
 
             ///funciones al perder conexion

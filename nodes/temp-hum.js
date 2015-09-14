@@ -19,6 +19,7 @@ module.exports = function(RED) {
         var var1;
         var var2;
         var topic2;
+        var sensor1;
 var  sendto=false;
 
 /****
@@ -79,7 +80,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
 //var decimal = parseInt(hexString, 16);
             ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
-           msgconf.payload = "{"+":"+node.idmodulo+";:"+"starth"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"start"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
@@ -96,7 +97,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
        // var  sendto=false;
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 1000);
+    loop(function(var1){ }); } , 3000);
 
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
@@ -113,7 +114,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 //tal vez sea conveniente agregar un token o algo similar para asegurarnos que el mensaje viene de un nodo confiable y si no viene 
 //de un nodo confiable simplemente no hacer node.send()
 
-            if(msg.payload=="oktopich"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+            if(msg.payload=="oktopic"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     
                  clearInterval(refreshIntervalId);  
                sendto=true;
@@ -122,20 +123,29 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
             }
 
 ///en el parse cero se encuentra la direccion del modulo
+
             parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
+            sensor1 = resultado; });
+            console.log(sensor1);
+            parse(msg.payload, 2, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
-            parse(msg.payload, 2, function(resultado){ 
+          
+            parse(msg.payload, 3, function(resultado){ 
             var2 = resultado; });
 
 
+if(sensor1 == "am") {
             topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
             var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
-
-            if(var1 && var1){  //solo enviamos el mensaje si contiene un valor util
+            if(var1 && var2){  //solo enviamos el mensaje si contiene un valor util
+            var1 = parseInt(var1);   
+            var2 = parseInt(var2); 
             msg.payload = var1; //asignamos el primer valor var1 al payload del primer mensaje
             msg2.payload = var2; //asignamos el segundo valor var2 al payload del segundo mensaje
             node.send([ msg , msg2 ]); //enviamos los 2 mensajes
-            }   }, this.id);
+            }   
+        }
+    }, this.id);
 
             ///funciones al perder conexion
                 this.client.on("connectionlost",function() {

@@ -22,6 +22,7 @@ module.exports = function(RED) {
         var var2;
         var topic2;
         var res;
+        var sensor;
 var  sendto=false;
 
 /****
@@ -81,7 +82,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
                    }
 
             ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
-           msgconf.payload = "{"+":"+node.idmodulo+";:"+"startl"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+           msgconf.payload = "{"+":"+node.idmodulo+";:"+"start"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
                     if ( msgconf.hasOwnProperty("topic") && (typeof  msgconf.topic === "string") && ( msgconf.topic !== "")) { // topic must exist
@@ -98,7 +99,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
        // var  sendto=false;
 
     var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 500);
+    loop(function(var1){ }); } , 3000);
 
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
@@ -116,19 +117,29 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 //de un nodo confiable simplemente no hacer node.send()
 
             if(msg.payload=="okcentral"){  //al recibir este mensaje especial denemos el loop de envio de conexion al modulo central
-            clearInterval(refreshIntervalId);  
-               sendto=true;
+           
               console.log(msg.payload);
            }
 
-            if(msg.payload=="oktopicl"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+            if(msg.payload=="oktopic"){
+             clearInterval(refreshIntervalId);  
+               sendto=true;
+                //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
             }
 
             parse(msg.payload, 1, function(resultado){ 
 
+            sensor = resultado; });
+            console.log(sensor);
+
+              parse(msg.payload, 2, function(resultado){ 
+
             var1 = resultado; });
+
+
+            if(sensor == "ldr") {
 
         var1 = parseInt(var1);
 
@@ -144,6 +155,9 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
         var msg2 = {payload:""};
         msg2.payload = var1;
         node.send([msg, msg2]); //enviamos el mensaje
+
+
+        }
 
            }, this.id);
 
