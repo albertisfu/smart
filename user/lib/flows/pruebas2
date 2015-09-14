@@ -1,0 +1,1 @@
+[{"id":"cd528da6.32ad7","type":"mqtt-broker-rgbleds","broker":"test.mosquitto.org","port":"1883","clientid":""},{"id":"d45c426d.2ba3c","type":"rgbleds","sid":"","f1":"","f2":"","f3":"","hexa":"1c669c","idmodulo":"40BDA1CA","idcentral":"40CC01EF","broker":"cd528da6.32ad7","x":626,"y":793,"z":"988b3d20.6774c","wires":[]}]

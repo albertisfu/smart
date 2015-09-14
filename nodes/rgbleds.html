@@ -1,0 +1,150 @@
+
+<script src="js/colpick.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/colpick.css" type="text/css"/>
+
+
+<script type="text/javascript">
+    RED.nodes.registerType('rgbleds',{
+        category: 'output',
+        color: '#E49A9A',
+        defaults: {
+            sid: {value:""},
+            f1: {value:""},
+            f2: {value:""},
+            f3: {value:""},
+            hexa: {value:""},
+            idmodulo: {value:"",required:true},
+            idcentral: {value:"",required:true},
+            broker: {type:"mqtt-broker-rgbleds", required:true},
+        },
+        inputs:1,
+        outputs:0,
+        icon: "rgb.png",
+        label: function() {
+           return this.sid||this.f1||this.f2||this.f3||this.hexa||this.rgbg||this.rgbb||"rgbleds";
+        }
+    });
+</script>
+
+ 
+
+<script type="text/x-red" data-template-name="rgbleds">
+
+ <div class="form-row">
+        <label for="node-input-idcentral"><i class="fa fa-tasks"></i>ID Central</label>
+        <input type="text" id="node-input-idcentral" data-i18n="">
+    </div>
+<div class="form-row">
+        <label for="node-input-idmodulo"><i class="fa fa-tag"></i>ID Modulo</label>
+        <input type="text" id="node-input-idmodulo" data-i18n="ID unico modulo">
+    </div>
+ <div class="form-row">
+        <label for="node-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
+        <input type="text" id="node-input-broker">
+    </div>
+
+    <div class="form-row">
+
+<p>ID sensor: </p>
+<input type="text" id="node-input-sid" placeholder="ID unico del sensor" name="node-input-sid">
+
+<p></p>
+  <label for="node-input-f1">Operación</label>
+        <select id="node-input-f1" style="width:125px !important" name="node-input-f1">
+            <option value="1">STATIC</option>
+            <option value="2">FADE</option>
+            <option value="3">BLINK</option> 
+        </select>
+
+
+
+<p>Tiempo encendido: </p>
+<input type="text" id="node-input-f2" placeholder="Inserte valor en milisegundos" disabled name="node-input-f2">
+
+<p>Tiempo apagado: </p>
+<input type="text" id="node-input-f3" placeholder="Inserte valor en milisegundos" disabled name="node-input-f3">
+
+
+<p></p>
+<p>Selecciona un color:</p>
+<div id="picker"></div>
+
+<input type="hidden" id="node-input-hexa" value="">
+<input type="hidden" id="node-input-rgbg" value="">
+<input type="hidden" id="node-input-rgbb" value="">
+
+<script type="text/javascript">
+//var foo = "some value";
+// document.getElementById("foo").innerHTML = foo;
+document.getElementById('node-input-f1').onchange = function () {
+    document.getElementById("node-input-f2").disabled = this.value == '1' || this.value == '2';
+    document.getElementById("node-input-f3").disabled = this.value == '1' || this.value == '2';
+}
+$('#picker').colpick({
+    flat:true,
+    layout:'rgbhex',
+    submit:0,
+    onChange: function(hsb,hex,rgb,el,bySetColor) {
+        //document.getElementById("foo").innerHTML = hex;
+ 
+        //var rgbr = rgb.r;
+        //var rgbg = rgb.g;
+        //var rgbb = rgb.b;
+        var hexa = hex;
+        console.log(hex);
+        $("#node-input-hexa").val(hexa);
+        //$("#node-input-rgbg").val(rgbg);
+        //$("#node-input-rgbb").val(rgbb);
+    }
+});
+</script>
+
+    </div>
+</script>
+
+
+
+<script type="text/x-red" data-help-name="rgbleds">
+    <p>Comparacion</p>
+</script>
+
+
+<script type="text/x-red" data-template-name="mqtt-broker-rgbleds">
+    <div class="form-row node-input-broker">
+        <label for="node-config-input-broker"><i class="fa fa-globe"></i> <span data-i18n="mqtt.label.broker"></span></label>
+        <input class="input-append-left" type="text" id="node-config-input-broker" placeholder="localhost" style="width: 40%;" >
+        <label for="node-config-input-port" style="margin-left: 10px; width: 35px; "> <span data-i18n="mqtt.label.port"></span></label>
+        <input type="text" id="node-config-input-port" data-i18n="[placeholder]mqtt.label.port" style="width:45px">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-clientid"><i class="fa fa-tag"></i> <span data-i18n="mqtt.label.clientid"></span></label>
+        <input type="text" id="node-config-input-clientid" data-i18n="[placeholder]mqtt.placeholder.clientid">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-user"><i class="fa fa-user"></i> <span data-i18n="common.label.username"></span></label>
+        <input type="text" id="node-config-input-user">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-lock"></i> <span data-i18n="common.label.password"></span></label>
+        <input type="password" id="node-config-input-password">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt-broker-rgbleds',{
+        category: 'config',
+        defaults: {
+            broker: {value:"",required:true},
+            port: {value:1883,required:true,validate:RED.validators.number()},
+            clientid: { value:"" }
+        },
+        credentials: {
+            user: {type:"text"},
+            password: {type: "password"}
+        },
+        label: function() {
+            if (this.broker == "") { this.broker = "localhost"; }
+            return (this.clientid?this.clientid+"@":"")+this.broker+":"+this.port;
+        }
+    });
+</script>

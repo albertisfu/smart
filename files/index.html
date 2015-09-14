@@ -18,6 +18,27 @@ socket.on("connect", function () {
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
 
+
+ #sol {
+
+height: 300px;
+width: 300px;
+    display: inline-block;
+
+}
+
+ .iluv {
+
+background: url('./sola.jpg') left center no-repeat;
+
+}
+
+ .ilua {
+
+background: url('./sol.jpg') left center no-repeat;
+
+}
+
     .monitor{
     width: 300px;
     float: right;
@@ -82,6 +103,9 @@ Sistema de Monitoreo
      <div id="g1"></div>
       <div id="g2"></div>
        <div id="g3"></div>
+
+       <div id="sol"></div>
+
     
     <script src="./raphael-2.1.4.min.js"></script>
     <script src="./justgage-1.1.0.min.js"></script>
@@ -144,9 +168,29 @@ if(data.type=="hum"){
 }
 
 
-if(data.type=="luz"){
+var d = document.getElementById("sol");
 
-    msgtopic2=parseInt(data.payload);
+if(data.type=="luz"){
+ 
+        if (data.payload==1)
+    {
+      d.classList.add("iluv");
+      d.classList.remove("ilua");
+       
+    }
+
+        if (data.payload==0)
+    {
+  d.classList.add("ilua");
+  d.classList.remove("iluv");
+    }
+
+
+  
+}
+
+if(data.type=="conta"){
+   msgtopic2=parseInt(data.payload);
     g3.refresh(msgtopic2);
 }
 

@@ -1,0 +1,1 @@
+[{"id":"c735d555.38ca28","type":"inject","name":"","topic":"","payload":"Incremento","payloadType":"string","repeat":"","crontab":"","once":false,"x":767.5000152587891,"y":108.75000190734863,"z":"988b3d20.6774c","wires":[["bce4716b.431b9"]]}]

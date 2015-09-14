@@ -286,15 +286,6 @@
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/constante.js"
     },
-    "rgb": {
-     "name": "rgb",
-     "types": [
-      "rgbleds"
-     ],
-     "enabled": true,
-     "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rgb.js"
-    },
     "counter": {
      "name": "counter",
      "types": [
@@ -307,7 +298,8 @@
     "presencia": {
      "name": "presencia",
      "types": [
-      "presencia"
+      "presencia",
+      "mqtt-broker-presencia"
      ],
      "enabled": true,
      "module": "node-red",
@@ -386,6 +378,16 @@
      "enabled": true,
      "module": "node-red",
      "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/luminosidad.js"
+    },
+    "rgbleds": {
+     "name": "rgbleds",
+     "types": [
+      "rgbleds",
+      "mqtt-broker-rgbleds"
+     ],
+     "enabled": true,
+     "module": "node-red",
+     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rgbleds.js"
     }
    }
   },

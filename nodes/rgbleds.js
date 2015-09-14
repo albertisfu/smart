@@ -1,39 +1,40 @@
 module.exports = function(RED) {
 
      "use strict";
-    
+
+//MQTT
+var connectionPool = require("./core/io/lib/mqttConnectionPool");
+var isUtf8 = require('is-utf8');
+///
 
 
-    function RGB(n) {
-
-        RED.nodes.createNode(this,n);
-var executed = false;
-        this.sid = n.sid;
-        this.f1 = n.f1;
-        this.f2 = n.f2;
-        this.f3 = n.f3;
-        this.hexa = n.hexa;
-
-        var val;
-        var res;
-        var func = parseInt(this.f1);  //aqui obtenemos el tipo de funcion que realizaremos
-        var node = this;
-        var topic1;
-        var arg1;
-        var arg2;
+    function Rgb(n) {
+   // var id;
+    //id = (1+Math.random()*4294967295).toString(16); //cambiar por un valor unico de dispocitivo similar a la mac que llegue en el mensaje configuración y conexion
+    var var1;
+    RED.nodes.createNode(this,n);
+    var node = this;
+    ////// Variables Modulo
+    this.hexa = n.hexa;
+        this.idcentral = n.idcentral;
+        this.broker = n.broker;
+        this.qos = n.qos || null;
+        this.retain = n.retain;
+        this.idmodulo = n.idmodulo;
+        this.topic = n.idmodulo;
+        this.brokerConfig = RED.nodes.getNode(this.broker);
         var hexa = this.hexa;
-
- var  sendto=false;
+        var  sendto=false;
     //////
     function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
         if(sendto==false){
         var1=node.client.publish(msgconf, function(return1){ });
           }
  }
-    this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
-    console.log("start")
-            clearInterval(refreshIntervalId);  
-       });
+    //this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
+    //console.log("start")
+      //      clearInterval(refreshIntervalId);  
+       //});
 
     /*this.on('input', function(msg) { //Ejecutar al recibir mensaje
 
@@ -56,10 +57,10 @@ var executed = false;
         msgconf.topic = node.idcentral;
         }
 
-    msgconf.payload = "{"+":"+node.idmodulo+";:"+"startr"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+    msgconf.payload = "{"+":"+node.idmodulo+";:"+"starts"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
-    var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 1000); 
+    //var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
+    //loop(function(var1){ }); } , 1000); 
 
 
 ///Funcion que responde al recibir un mensaje con el topic suscrito
@@ -72,7 +73,7 @@ var executed = false;
                         msg._topic = topic;
             }          
 
-            if(msg.payload=="oktopicr"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+            if(msg.payload=="oktopics"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                 clearInterval(refreshIntervalId);  
                sendto=true;
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
@@ -101,7 +102,10 @@ var executed = false;
                 if (node.idcentral) {
                     msg.topic = node.idcentral;
                 }
-                msg.payload = "{"+":"+node.idmodulo+";:"+hexa+"}"
+
+
+            var res = hexa.toUpperCase();
+                msg.payload = "{"+":"+node.idmodulo+";:"+res+"}"
 
                 if ( msg.hasOwnProperty("payload")) {
                     if (msg.hasOwnProperty("topic") && (typeof msg.topic === "string") && (msg.topic !== "")) { // topic must exist
@@ -126,7 +130,7 @@ var executed = false;
     }
   
 
-    RED.nodes.registerType("rgbleds",RGB);
+    RED.nodes.registerType("rgbleds",Rgb);
 
 
     ///Funcion Broker
@@ -150,5 +154,3 @@ var executed = false;
 
 
 }
-
-

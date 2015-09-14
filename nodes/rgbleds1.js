@@ -1,30 +1,29 @@
 module.exports = function(RED) {
 
-	 "use strict";
-
-//MQTT
-var connectionPool = require("./core/io/lib/mqttConnectionPool");
-var isUtf8 = require('is-utf8');
-///
+     "use strict";
+    
 
 
-    function ServoMotor(n) {
-   // var id;
-    //id = (1+Math.random()*4294967295).toString(16); //cambiar por un valor unico de dispocitivo similar a la mac que llegue en el mensaje configuración y conexion
-    var var1;
-    RED.nodes.createNode(this,n);
-    var node = this;
-    var payvar;
+    function RGB(n) {
 
-    ////// Variables Modulo
-        this.idcentral = n.idcentral;
-        this.broker = n.broker;
-        this.qos = n.qos || null;
-        this.retain = n.retain;
-        this.idmodulo = n.idmodulo;
-        this.topic = n.idmodulo;
-        this.brokerConfig = RED.nodes.getNode(this.broker);
-        var  sendto=false;
+        RED.nodes.createNode(this,n);
+var executed = false;
+        this.sid = n.sid;
+        this.f1 = n.f1;
+        this.f2 = n.f2;
+        this.f3 = n.f3;
+        this.hexa = n.hexa;
+
+        var val;
+        var res;
+        var func = parseInt(this.f1);  //aqui obtenemos el tipo de funcion que realizaremos
+        var node = this;
+        var topic1;
+        var arg1;
+        var arg2;
+        var hexa = this.hexa;
+
+ var  sendto=false;
     //////
     function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
         if(sendto==false){
@@ -57,9 +56,9 @@ var isUtf8 = require('is-utf8');
         msgconf.topic = node.idcentral;
         }
 
-    msgconf.payload = "{"+":"+node.idmodulo+";:"+"starts"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
+    msgconf.payload = "{"+":"+node.idmodulo+";:"+"startr"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
-    //var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
+   // var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
     //loop(function(var1){ }); } , 1000); 
 
 
@@ -73,8 +72,8 @@ var isUtf8 = require('is-utf8');
                         msg._topic = topic;
             }          
 
-            if(msg.payload=="oktopics"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
-                clearInterval(refreshIntervalId);  
+            if(msg.payload=="oktopicr"){ //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
+                //clearInterval(refreshIntervalId);  
                sendto=true;
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
                     console.log(msg.payload);
@@ -99,14 +98,13 @@ var isUtf8 = require('is-utf8');
 
 
              this.on("input",function(msg) {
+
+                console.log("gola");
+                
                 if (node.idcentral) {
                     msg.topic = node.idcentral;
                 }
-
-                payvar = msg.payload;
-                payvar = parseInt(payvar); 
-                payvar = Math.round(payvar);
-                msg.payload = "{"+":"+node.idmodulo+";:"+payvar+"}"
+                msg.payload = "{"+":"+node.idmodulo+";:"+hexa+"}"
 
                 if ( msg.hasOwnProperty("payload")) {
                     if (msg.hasOwnProperty("topic") && (typeof msg.topic === "string") && (msg.topic !== "")) { // topic must exist
@@ -131,7 +129,7 @@ var isUtf8 = require('is-utf8');
     }
   
 
-    RED.nodes.registerType("servomotor",ServoMotor);
+    RED.nodes.registerType("rgbleds",RGB);
 
 
     ///Funcion Broker
@@ -146,7 +144,7 @@ var isUtf8 = require('is-utf8');
             this.password = this.credentials.password;
         }
     }
-    RED.nodes.registerType("mqtt-broker-servo",MQTTBrokerNode,{ 
+    RED.nodes.registerType("mqtt-broker-rgbleds",MQTTBrokerNode,{ 
         credentials: {
             user: {type:"text"},
             password: {type: "password"}
@@ -155,3 +153,5 @@ var isUtf8 = require('is-utf8');
 
 
 }
+
+

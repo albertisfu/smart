@@ -63,10 +63,10 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
       }
 }
 
-  this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
-    console.log("start")
-            clearInterval(refreshIntervalId);  
-        });
+  //this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
+    //console.log("start")
+      //      clearInterval(refreshIntervalId);  
+        //});
 
 /// Funcion al desplegar el flow
 
@@ -98,8 +98,8 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
        // var  sendto=false;
 
-    var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
-    loop(function(var1){ }); } , 3000);
+   // var refreshIntervalId = setInterval(function() {   //llamamos funcion conexion
+    //loop(function(var1){ }); } , 3000);
 
 
 //OJO22 aqui asiganremos el nuevo topic generado a this.topic
@@ -122,7 +122,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
            }
 
             if(msg.payload=="oktopic"){
-             clearInterval(refreshIntervalId);  
+             //clearInterval(refreshIntervalId);  
                sendto=true;
                 //al recibir este mensaje especial ponemos en verde el modulo significa que el modulo xbee se ha conectado al central
                     node.status({fill:"green",shape:"dot",text:"common.status.connected"});  
@@ -141,6 +141,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
             if(sensor == "ldr") {
 
+console.log(lum);
         var1 = parseInt(var1);
 
             if (lum >= var1){  
