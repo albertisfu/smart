@@ -39,6 +39,40 @@ background: url('./sol.jpg') left center no-repeat;
 
 }
 
+
+.taire {
+    text-align: center;
+  
+    font-family: arial;
+    font-size: 36px;
+    font-weight: bold;
+    color: #999;
+   
+}
+#aire {
+
+    width: 400px;
+    height: 300px;
+    display: inline-block;
+    margin: 1em;
+    background-position-x: center;
+    background-position-y: top;
+
+}
+
+ .buena {
+
+background: url('./buena.jpg') left center no-repeat;
+
+}
+
+ .mala {
+
+background: url('./mala.jpg') left center no-repeat;
+
+}
+
+
     .monitor{
     width: 300px;
     float: right;
@@ -70,11 +104,25 @@ background: url('./sol.jpg') left center no-repeat;
     #g1,
     #g2,
     #g3 {
-        width: 500px;
-        height: 360px;
+        width: 400px;
+        height: 300px;
         display: inline-block;
         margin: 1em;
     }
+
+    #cl{
+    width: 49%;
+    float: left;
+    display: block;
+    clear: both;
+}
+
+    #cr{
+    width: 49%;
+    float: right;
+    display: block;
+}
+
 
     p {
         display: block;
@@ -100,11 +148,14 @@ Sistema de Monitoreo
 
 
     </div>
-     <div id="g1"></div>
-      <div id="g2"></div>
-       <div id="g3"></div>
-
-       <div id="sol"></div>
+    <div id="cl"><div id="g1"></div></div>
+     <div id="cr"> <div id="g2"></div></div>
+      <div id="cl"><div id="g3"></div></div>
+       <div id="cr"><text class="taire">Calidad del Aire</text><div id="aire"></div></div>
+     
+  
+  
+      <!--- <div id="sol"></div> -->
 
     
     <script src="./raphael-2.1.4.min.js"></script>
@@ -143,7 +194,7 @@ Sistema de Monitoreo
             value: msgtopic2,
             min: 0,
             max: 100,
-            title: "Contador",
+            title: "Numero Vehículos",
             label: "",
             donut: true,
             gaugeWidthScale: 0.6,
@@ -188,6 +239,32 @@ if(data.type=="luz"){
 
   
 }
+
+
+
+var d = document.getElementById("aire");
+
+if(data.type=="aire"){
+ 
+        if (data.payload==1)
+    {
+      d.classList.add("buena");
+      d.classList.remove("mala");
+       
+    }
+
+        if (data.payload==0)
+    {
+  d.classList.add("mala");
+  d.classList.remove("buena");
+    }
+
+
+  
+}
+
+
+
 
 if(data.type=="conta"){
    msgtopic2=parseInt(data.payload);
