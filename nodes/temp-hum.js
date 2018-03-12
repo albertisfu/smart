@@ -18,9 +18,13 @@ module.exports = function(RED) {
         this.brokerConfig = RED.nodes.getNode(this.broker);
         var var1;
         var var2;
+        var var3;
+        var var4;
         var topic2;
+        var topic3;
+        var topic4;
         var sensor1;
-var  sendto=false;
+        var  sendto=false;
 
 /****
 Para este caso de sensores
@@ -53,11 +57,11 @@ los mensajes del modulo a la plataforma se recibiran via "topic idmodulo"
     } 
 
 
-function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
-    if(sendto==false){
-    var1=node.client.publish(msgconf, function(return1){ });
-      }
-}
+//function loop(var1) {   ///funcion que envia constantemente mensaje al modulo central hasta avisar que esta disponible
+  //  if(sendto==false){
+    //var1=node.client.publish(msgconf, function(return1){ });
+      //}
+//}
 
   //this.on("close", function() { //Funcion para parar envio de mensaje de conexion al parar flow
     //console.log("start")
@@ -79,7 +83,7 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
 
 //var decimal = parseInt(hexString, 16);
-            ///Plantilla mensaje "{:idmodulo;:menconf;:var;}"        
+            ///Plantilla mensaje "{:40CCF15;:am;:8888;}"         {:40CCF15;:am;:8888;:7777}
            msgconf.payload = "{"+":"+node.idmodulo+";:"+"start"+"}";// mensaje a enviar al modulo con id del modulo xbee: 
 
             if (  msgconf.hasOwnProperty("payload")) { //validamos si tenemos un payload y topic
@@ -124,25 +128,39 @@ function loop(var1) {   ///funcion que envia constantemente mensaje al modulo ce
 
 ///en el parse cero se encuentra la direccion del modulo
 
-            parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
+            parse(msg.payload, 0, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             sensor1 = resultado; });
             console.log(sensor1);
-            parse(msg.payload, 2, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
+            parse(msg.payload, 1, function(resultado){ //funcion parse para sacarlos datos del formato {a:2323;b:323}
             var1 = resultado; });
           
-            parse(msg.payload, 3, function(resultado){ 
+            parse(msg.payload, 2, function(resultado){ 
             var2 = resultado; });
+
+            parse(msg.payload, 3, function(resultado){ 
+            var3 = resultado; });
+
+            parse(msg.payload, 4, function(resultado){ 
+            var4 = resultado; });
 
 
 if(sensor1 == "am") {
             topic2 = msg.topic + "-2"; //definimos el topic del segundo mensaje para usar como identificador
+            topic3 = msg.topic + "-3"; //definimos el topic del segundo mensaje para usar como identificador
+            topic4 = msg.topic + "-4"; //definimos el topic del segundo mensaje para usar como identificador
             var msg2 = {topic:topic2,payload:""}; //Delclaremos el segundo mensaje
-            if(var1 && var2){  //solo enviamos el mensaje si contiene un valor util
-            var1 = parseInt(var1);   
-            var2 = parseInt(var2); 
+            var msg3 = {topic:topic3,payload:""}; //Delclaremos el segundo mensaje
+            var msg4 = {topic:topic4,payload:""}; //Delclaremos el segundo mensaje
+            if(var1 && var2  && var3){  //solo enviamos el mensaje si contiene un valor util
+            //var1 = parseInt(var1);   
+            //var2 = parseInt(var2); 
+            //var3 = parseInt(var3); 
+            //var4 = parseInt(var4); 
             msg.payload = var1; //asignamos el primer valor var1 al payload del primer mensaje
             msg2.payload = var2; //asignamos el segundo valor var2 al payload del segundo mensaje
-            node.send([ msg , msg2 ]); //enviamos los 2 mensajes
+            msg3.payload = var3; //asignamos el segundo valor var2 al payload del segundo mensaje
+            msg4.payload = var4;
+            node.send([ msg , msg2, msg3, msg4 ]); //enviamos los 2 mensajes
             }   
         }
     }, this.id);

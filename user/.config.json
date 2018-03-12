@@ -11,7 +11,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/comparacion.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/comparacion.js"
     },
     "comparacionfija": {
      "name": "comparacionfija",
@@ -20,7 +20,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/comparacionfija.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/comparacionfija.js"
     },
     "sentiment": {
      "name": "sentiment",
@@ -29,7 +29,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/analysis/72-sentiment.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/analysis/72-sentiment.js"
     },
     "inject": {
      "name": "inject",
@@ -38,7 +38,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/20-inject.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/20-inject.js"
     },
     "catch": {
      "name": "catch",
@@ -47,7 +47,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/25-catch.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/25-catch.js"
     },
     "debug": {
      "name": "debug",
@@ -56,7 +56,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/58-debug.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/58-debug.js"
     },
     "exec": {
      "name": "exec",
@@ -65,7 +65,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/75-exec.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/75-exec.js"
     },
     "function": {
      "name": "function",
@@ -74,7 +74,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/80-function.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/80-function.js"
     },
     "template": {
      "name": "template",
@@ -83,7 +83,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/80-template.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/80-template.js"
     },
     "delay": {
      "name": "delay",
@@ -92,7 +92,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/89-delay.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/89-delay.js"
     },
     "trigger": {
      "name": "trigger",
@@ -101,7 +101,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/89-trigger.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/89-trigger.js"
     },
     "comment": {
      "name": "comment",
@@ -110,7 +110,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/90-comment.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/90-comment.js"
     },
     "unknown": {
      "name": "unknown",
@@ -119,7 +119,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/core/98-unknown.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/core/98-unknown.js"
     },
     "rpi-gpio": {
      "name": "rpi-gpio",
@@ -130,7 +130,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/hardware/36-rpi-gpio.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/hardware/36-rpi-gpio.js"
     },
     "mqtt": {
      "name": "mqtt",
@@ -141,7 +141,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/io/10-mqtt.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/io/10-mqtt.js"
     },
     "httpin": {
      "name": "httpin",
@@ -152,7 +152,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/io/21-httpin.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/io/21-httpin.js"
     },
     "websocket": {
      "name": "websocket",
@@ -164,7 +164,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/io/22-websocket.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/io/22-websocket.js"
     },
     "watch": {
      "name": "watch",
@@ -173,7 +173,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/io/23-watch.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/io/23-watch.js"
     },
     "switch": {
      "name": "switch",
@@ -182,7 +182,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/logic/10-switch.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/logic/10-switch.js"
     },
     "change": {
      "name": "change",
@@ -191,7 +191,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/logic/15-change.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/logic/15-change.js"
     },
     "range": {
      "name": "range",
@@ -200,7 +200,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/logic/16-range.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/logic/16-range.js"
     },
     "CSV": {
      "name": "CSV",
@@ -209,7 +209,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/parsers/70-CSV.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/parsers/70-CSV.js"
     },
     "HTML": {
      "name": "HTML",
@@ -218,7 +218,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/parsers/70-HTML.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/parsers/70-HTML.js"
     },
     "JSON": {
      "name": "JSON",
@@ -227,7 +227,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/parsers/70-JSON.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/parsers/70-JSON.js"
     },
     "XML": {
      "name": "XML",
@@ -236,7 +236,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/parsers/70-XML.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/parsers/70-XML.js"
     },
     "tail": {
      "name": "tail",
@@ -245,7 +245,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/storage/28-tail.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/storage/28-tail.js"
     },
     "file": {
      "name": "file",
@@ -255,7 +255,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/core/storage/50-file.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/core/storage/50-file.js"
     },
     "temp-hum": {
      "name": "temp-hum",
@@ -265,7 +265,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/temp-hum.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/temp-hum.js"
     },
     "servomotor": {
      "name": "servomotor",
@@ -275,7 +275,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/servomotor.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/servomotor.js"
     },
     "constante": {
      "name": "constante",
@@ -284,7 +284,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/constante.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/constante.js"
     },
     "counter": {
      "name": "counter",
@@ -293,7 +293,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/counter.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/counter.js"
     },
     "presencia": {
      "name": "presencia",
@@ -303,7 +303,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/presencia.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/presencia.js"
     },
     "led": {
      "name": "led",
@@ -312,7 +312,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/led.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/led.js"
     },
     "relevador": {
      "name": "relevador",
@@ -321,7 +321,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/relevador.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/relevador.js"
     },
     "monitor": {
      "name": "monitor",
@@ -330,7 +330,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/monitor.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/monitor.js"
     },
     "ldr": {
      "name": "ldr",
@@ -340,7 +340,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/ldr.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/ldr.js"
     },
     "incremento": {
      "name": "incremento",
@@ -349,7 +349,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/incremento.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/incremento.js"
     },
     "decremento": {
      "name": "decremento",
@@ -358,7 +358,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/decremento.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/decremento.js"
     },
     "rfid": {
      "name": "rfid",
@@ -368,7 +368,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rfid.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/rfid.js"
     },
     "luminosidad": {
      "name": "luminosidad",
@@ -377,7 +377,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/luminosidad.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/luminosidad.js"
     },
     "rgbleds": {
      "name": "rgbleds",
@@ -387,7 +387,7 @@
      ],
      "enabled": true,
      "module": "node-red",
-     "file": "/Users/administrador/Desarrollo/dev/smart/node/nodes/rgbleds.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/nodes/rgbleds.js"
     }
    }
   },
@@ -403,7 +403,7 @@
      ],
      "enabled": true,
      "module": "node-red-node-email",
-     "file": "/Users/administrador/desarrollo/dev/smart/node/node_modules/node-red-node-email/61-email.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/node_modules/node-red-node-email/61-email.js"
     }
    }
   },
@@ -418,7 +418,7 @@
      ],
      "enabled": true,
      "module": "node-red-node-feedparser",
-     "file": "/Users/administrador/desarrollo/dev/smart/node/node_modules/node-red-node-feedparser/32-feedparse.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/node_modules/node-red-node-feedparser/32-feedparse.js"
     }
    }
   },
@@ -433,7 +433,7 @@
      ],
      "enabled": true,
      "module": "node-red-node-rbe",
-     "file": "/Users/administrador/desarrollo/dev/smart/node/node_modules/node-red-node-rbe/rbe.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/node_modules/node-red-node-rbe/rbe.js"
     }
    }
   },
@@ -450,7 +450,7 @@
      ],
      "enabled": true,
      "module": "node-red-node-serialport",
-     "file": "/Users/administrador/desarrollo/dev/smart/node/node_modules/node-red-node-serialport/25-serial.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/node_modules/node-red-node-serialport/25-serial.js"
     }
    }
   },
@@ -467,7 +467,7 @@
      ],
      "enabled": true,
      "module": "node-red-node-twitter",
-     "file": "/Users/administrador/desarrollo/dev/smart/node/node_modules/node-red-node-twitter/27-twitter.js"
+     "file": "/Users/alberto/desarrollo/smart/smart/node_modules/node-red-node-twitter/27-twitter.js"
     }
    }
   }

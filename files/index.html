@@ -61,16 +61,24 @@ background: url('./sol.jpg') left center no-repeat;
 }
 
  .buena {
-
 background: url('./buena.jpg') left center no-repeat;
-
 }
 
- .mala {
+ .regular {
+background: url('./regular.jpg') left center no-repeat;
+}
 
+.mala {
 background: url('./mala.jpg') left center no-repeat;
-
 }
+ .muymala {
+background: url('./muymala.jpg') left center no-repeat;
+}
+
+.exmala {
+background: url('./exmala.jpg') left center no-repeat;
+}
+
 
 
     .monitor{
@@ -102,10 +110,16 @@ background: url('./mala.jpg') left center no-repeat;
     }
 
     #g1,
-    #g2,
-    #g3 {
+    #g2{
         width: 400px;
         height: 300px;
+        display: inline-block;
+        margin: 1em;
+    }
+
+    #g3 {
+        width: 400px;
+        height: 400px;
         display: inline-block;
         margin: 1em;
     }
@@ -151,7 +165,7 @@ Sistema de Monitoreo
     <div id="cl"><div id="g1"></div></div>
      <div id="cr"> <div id="g2"></div></div>
       <div id="cl"><div id="g3"></div></div>
-       <div id="cr"><text class="taire">Calidad del Aire</text><div id="aire"></div></div>
+       <div id="cr"><text class="taire">Air Quality</text><div id="aire"></div></div>
      
   
   
@@ -174,7 +188,7 @@ Sistema de Monitoreo
             value: msgtopic,
             min: 0,
             max: 100,
-            title: "Temperatura",
+            title: "Temperature",
             label: "Grados"
         });
 
@@ -183,9 +197,9 @@ Sistema de Monitoreo
             id: "g2",
             value: msgtopic1,
             min: 0,
-            max: 100,
-            title: "Humedad Relativa",
-            label: ""
+            max: 2000,
+            title: "Relative Pressure",
+            label: "mb"
         });
 
 
@@ -193,18 +207,18 @@ Sistema de Monitoreo
             id: "g3",
             value: msgtopic2,
             min: 0,
-            max: 100,
-            title: "Numero Vehículos",
-            label: "",
-            donut: true,
-            gaugeWidthScale: 0.6,
+            max:11,
+            title: "UV Radiation",
+            label: "UV Index",
+            donut: false,
+            gaugeWidthScale: 0.1,
             counter: true
         });
 
 
 
 socket.on('message', function(data){
-console.log(data.payload);
+
 
 if(data.type=="temp"){
 
@@ -212,7 +226,7 @@ if(data.type=="temp"){
     g1.refresh(msgtopic);
 }
 
-if(data.type=="hum"){
+if(data.type=="pre"){
 
     msgtopic1=parseInt(data.payload);
     g2.refresh(msgtopic1);
@@ -246,18 +260,56 @@ var d = document.getElementById("aire");
 
 if(data.type=="aire"){
  
-        if (data.payload==1)
+ console.log(data.payload);
+        if (data.payload <= 50)
     {
       d.classList.add("buena");
+      d.classList.remove("regular");
       d.classList.remove("mala");
+      d.classList.remove("muymala");
+      d.classList.remove("exmala");
+
        
     }
 
-        if (data.payload==0)
+        if (data.payload <= 100 && data.payload > 50)
     {
-  d.classList.add("mala");
-  d.classList.remove("buena");
+        d.classList.add("regular");
+        d.classList.remove("buena");
+      d.classList.remove("mala");
+      d.classList.remove("muymala");
+      d.classList.remove("exmala");
     }
+
+
+        if (data.payload <= 150 && data.payload > 100)
+    {
+        d.classList.add("mala");
+        d.classList.remove("buena");
+      d.classList.remove("regular");
+      d.classList.remove("muymala");
+      d.classList.remove("exmala");
+    }
+
+    if (data.payload <= 200 && data.payload > 150)
+    {
+        d.classList.add("muymala");
+        d.classList.remove("buena");
+      d.classList.remove("regular");
+      d.classList.remove("mala");
+      d.classList.remove("exmala");
+    }
+
+
+if (data.payload > 200 )
+    {
+        d.classList.add("exmala");
+        d.classList.remove("buena");
+      d.classList.remove("regular");
+      d.classList.remove("mala");
+      d.classList.remove("muymala");
+    }
+
 
 
   
@@ -266,7 +318,7 @@ if(data.type=="aire"){
 
 
 
-if(data.type=="conta"){
+if(data.type=="rad"){
    msgtopic2=parseInt(data.payload);
     g3.refresh(msgtopic2);
 }
