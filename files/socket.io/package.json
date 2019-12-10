@@ -32,7 +32,7 @@
     "mocha": "1.16.2",
     "socket.io": "automattic/socket.io#43fa075",
     "text-blob-builder": "0.0.1",
-    "uglify-js": "2.4.15",
+    "uglify-js": "3.7.2",
     "zuul": "3.0.0",
     "zuul-ngrok": "2.0.0"
   },
