@@ -49,7 +49,7 @@
         "passport-http-bearer":"1.0.1",
         "passport-oauth2-client-password":"0.1.2",
         "oauth2orize":"1.0.1",
-        "i18next":"1.10.2",
+        "i18next":"19.0.1",
         "semver": "5.0.1",
         "node-red-node-feedparser":"0.1.*",
         "node-red-node-email":"0.1.*",
